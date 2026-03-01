@@ -11,8 +11,8 @@ const siteData = {
   // ---------------------------------------------------------------------------
   name: "Jacopo Romano",         // Il tuo nome (appare nel navbar e nell'hero)
   tagline: "Composer & Sound Designer",  // La tua qualifica
-  heroPhrase: "Musica che racconta storie.",  // Frase grande nell'hero
-  heroSubPhrase: "Compongo colonne sonore originali, sound design e mixing per cinema, videogiochi e media digitali. Ogni progetto è un'esperienza sonica unica.",
+  heroPhrase: "Jacopo Romano",  // Frase grande nell'hero
+  heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sonic experience",
 
   // Pulsante hero — il click scorrerà alla sezione portfolio
   heroCTA: "Ascolta i miei lavori",
