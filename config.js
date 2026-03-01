@@ -122,7 +122,7 @@ const siteData = {
   //  Lascia una stringa vuota "" per nascondere un'icona social.
   // ---------------------------------------------------------------------------
   contact: {
-    email: "jacopo@esempio.com",
+    email: "jacoporomano74@gmail.com",
     ctaText: "Got a project in mind?",
     ctaSubText: "Reach out — I'd love to hear about it."
   },
