@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Il titolo della pagina viene aggiornato da app.js -->
+  <title>Portfolio</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans (moderna, leggibile, elegante) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Foglio di stile principale -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =====================================================================
+       NAVBAR — barra di navigazione fissa in alto
+       ===================================================================== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <!-- Logo / Nome (popolato da app.js) -->
+      <a href="#hero" class="nav-logo" id="nav-logo"></a>
+
+      <!-- Hamburger per mobile -->
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Link di navigazione (popolati da app.js) -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#portfolio" class="nav-link" id="nav-link-portfolio"></a></li>
+        <li><a href="#about"     class="nav-link" id="nav-link-about"></a></li>
+        <li><a href="#services"  class="nav-link" id="nav-link-services"></a></li>
+        <li><a href="#contact"   class="nav-link nav-link-cta" id="nav-link-contact"></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- =====================================================================
+       HERO SECTION — prima sezione a schermo intero
+       ===================================================================== -->
+  <section id="hero">
+    <!-- Sfondo decorativo con forma geometrica -->
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow" id="hero-tagline"></p>
+      <h1 class="hero-title" id="hero-phrase"></h1>
+      <p class="hero-sub" id="hero-subphrase"></p>
+      <a href="#portfolio" class="btn-primary" id="hero-cta"></a>
+    </div>
+
+    <!-- Indicatore scroll animato -->
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       PORTFOLIO — griglia dei brani audio
+       ===================================================================== -->
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label" id="portfolio-label"></span>
+        <h2 class="section-title" id="portfolio-title"></h2>
+      </div>
+      <!-- Le card vengono generate dinamicamente da app.js -->
+      <div class="tracks-grid" id="tracks-grid"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       ABOUT ME — biografia e foto
+       ===================================================================== -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-layout">
+        <!-- Colonna testo -->
+        <div class="about-text">
+          <div class="section-header section-header--left">
+            <span class="section-label" id="about-label"></span>
+            <h2 class="section-title" id="about-name"></h2>
+          </div>
+          <div class="about-bio" id="about-bio"></div>
+        </div>
+        <!-- Colonna immagine -->
+        <div class="about-image-wrap">
+          <div class="about-image-frame">
+            <img id="about-photo" src="" alt="" loading="lazy" />
+          </div>
+          <div class="about-image-deco"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       SERVIZI — lista delle competenze offerte
+       ===================================================================== -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label" id="services-label"></span>
+        <h2 class="section-title" id="services-title"></h2>
+      </div>
+      <!-- Le card vengono generate dinamicamente da app.js -->
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       FOOTER / CONTATTI
+       ===================================================================== -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <!-- CTA testuale principale -->
+      <div class="contact-cta">
+        <p class="contact-cta-label" id="contact-cta-text"></p>
+        <p class="contact-cta-sub"   id="contact-cta-sub"></p>
+        <a class="contact-email" id="contact-email" href="#"></a>
+      </div>
+
+      <!-- Modulo di contatto -->
+      <div class="contact-form-wrap" id="contact-form-wrap">
+        <h3 class="contact-form-title" id="contact-form-title"></h3>
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text"  id="form-name"    name="name"    class="form-input" />
+            </div>
+            <div class="form-group">
+              <input type="email" id="form-email"   name="email"   class="form-input" />
+            </div>
+          </div>
+          <div class="form-group">
+            <textarea id="form-message" name="message" class="form-input form-textarea"></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit" id="form-submit"></button>
+        </form>
+        <div class="form-success" id="form-success"></div>
+      </div>
+
+      <!-- Divisore -->
+      <div class="footer-divider"></div>
+
+      <!-- Social links (generati da app.js) + copyright -->
+      <div class="footer-bottom">
+        <div class="social-links" id="social-links"></div>
+        <p class="footer-copy" id="footer-copy"></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       SCRIPT — config.js deve essere caricato PRIMA di app.js
+       ===================================================================== -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
