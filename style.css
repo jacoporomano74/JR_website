@@ -551,12 +551,16 @@ ul { list-style: none; }
 
 /* video embedded nella sezione About */
 .about-video {
-  margin-top: 24px;
+  margin: 32px auto 0;
+  max-width: 800px;
+  text-align: center;
 }
 .about-video iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
   border: none;
+  display: block;
+  margin: 0 auto;
 }
 
 
