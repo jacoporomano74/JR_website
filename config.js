@@ -108,33 +108,33 @@ const siteData = {
   services: [
     {
       icon: "🎬",
-      title: "Composizione per Video",
-      description: "Colonne sonore originali per film, documentari, serie TV e cortometraggi. Ogni nota al servizio della narrazione visiva."
+      title: "Video Composition",
+      description: "Original soundtracks for films, documentaries, TV series and shorts. Every note serving the visual narrative."
     },
     {
       icon: "🎮",
-      title: "Musica per Videogiochi",
-      description: "Score adattativi e temi memorabili per giochi di ogni genere. Dalla single-room indie al titolo AAA."
+      title: "Music for Video Games",
+      description: "Adaptive scores and memorable themes for games of every genre. From single-room indies to AAA titles."
     },
     {
       icon: "🔊",
       title: "Sound Design",
-      description: "Creazione di effetti sonori, ambienti e texture audio che danno vita a mondi e personaggi."
+      description: "Creation of sound effects, ambiences and audio textures that bring worlds and characters to life."
     },
     {
       icon: "🎚️",
       title: "Mixing & Mastering",
-      description: "Rifinitura professionale del mix e mastering per garantire il massimo impatto su qualsiasi sistema audio."
+      description: "Professional mix polishing and mastering to ensure maximum impact on any audio system."
     },
     {
       icon: "📢",
-      title: "Identità Sonora per Brand",
-      description: "Jingle, sonic branding e musica per pubblicità che rendono un brand immediatamente riconoscibile."
+      title: "Sonic Branding for Brands",
+      description: "Jingles, sonic branding and music for advertising that make a brand instantly recognizable."
     },
     {
       icon: "🎵",
-      title: "Produzione Musicale",
-      description: "Arrangiamento e produzione completa di brani originali per artisti, podcast e contenuti digitali."
+      title: "Music Production",
+      description: "Arranging and full production of original tracks for artists, podcasts and digital content."
     }
   ],
 
