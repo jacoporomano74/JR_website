@@ -549,6 +549,17 @@ ul { list-style: none; }
    -------------------------------------------------------------------------- */
 #about { background: var(--bg-base); }
 
+/* video embedded nella sezione About */
+.about-video {
+  margin-top: 24px;
+}
+.about-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+}
+
+
 .about-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
