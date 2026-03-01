@@ -551,8 +551,8 @@ ul { list-style: none; }
 
 /* video embedded nella sezione About */
 .about-video {
-  margin: 32px auto 0;
-  max-width: 800px;
+  margin: 48px auto 0;   /* più in basso rispetto al contenuto sopra */
+  max-width: 600px;      /* video leggermente più piccolo */
   text-align: center;
 }
 .about-video iframe {
