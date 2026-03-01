@@ -42,24 +42,24 @@ const siteData = {
   // ---------------------------------------------------------------------------
   tracks: [
     {
-      title: "Echoes of the Void",
-      description: "Colonna sonora orchestrale per cortometraggio sci-fi. Un viaggio emotivo tra il silenzio dello spazio e la forza interiore del protagonista.",
-      genre: "Orchestral / Cinematic",
-      audioFile: "assets/audio/JR 1.wav",
+      title: "Cave Ambient",
+      description: "Videogame track",
+      genre: "Ambient",
+      audioFile: "assets/audio/Cave Ambient.wav",
       coverImage: "assets/covers/cover-01.jpg"
     },
     {
-      title: "Neon Pulse",
-      description: "Sound design e musica elettronica per un videogioco d'azione ambientato in una metropoli futuristica.",
-      genre: "Electronic / Game",
-      audioFile: "assets/audio/track-02.mp3",
+      title: "Before Battle",
+      description: "Videogame action Track.",
+      genre: "Epic / Action",
+      audioFile: "assets/audio/Beforebattle.wav",
       coverImage: "assets/covers/cover-02.jpg"
     },
     {
-      title: "Foresta Incantata",
-      description: "Composizione ambient per una serie documentaristica sulla natura. Trame sonore organiche e strumenti acustici.",
-      genre: "Ambient / Documentary",
-      audioFile: "assets/audio/track-03.mp3",
+      title: "The Beloved Queen",
+      description: "Videogame Side Character Track",
+      genre: "Nostalgic / Emotional",
+      audioFile: "assets/audio/The Beloved Queen.wav",
       coverImage: "assets/covers/cover-03.jpg"
     },
     {
