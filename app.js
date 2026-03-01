@@ -123,10 +123,43 @@ function populatePortfolio() {
 }
 
 function buildTrackCard(track, index) {
-  // Contenitore principale
   const card = el('div', 'track-card reveal');
   if (index % 3 === 1) card.classList.add('reveal-delay-1');
   if (index % 3 === 2) card.classList.add('reveal-delay-2');
+
+  // --- YouTube video card ---
+  if (track.youtubeId) {
+    card.classList.add('track-card--video');
+
+    const embedWrap = el('div', 'track-youtube-wrap');
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${track.youtubeId}`;
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute('title', track.title);
+    embedWrap.appendChild(iframe);
+    card.appendChild(embedWrap);
+
+    const body = el('div', 'track-body');
+    if (track.genre) {
+      const genre = el('p', 'track-genre');
+      genre.textContent = track.genre;
+      body.appendChild(genre);
+    }
+    const title = el('h3', 'track-title');
+    title.textContent = track.title;
+    body.appendChild(title);
+    if (track.description) {
+      const desc = el('p', 'track-description');
+      desc.textContent = track.description;
+      body.appendChild(desc);
+    }
+    card.appendChild(body);
+    return card;
+  }
+
+  // --- Audio card (original) ---
 
   // ----- COVER IMAGE -----
   const coverWrap = el('div', 'track-cover');

@@ -29,10 +29,11 @@ const siteData = {
   },
 
   // ---------------------------------------------------------------------------
-  //  PORTFOLIO AUDIO — I TUOI BRANI/PROGETTI
-  //  Aggiungi o rimuovi blocchi { } per aggiungere o togliere tracce.
-  //  audioFile: percorso al file MP3/WAV (es. "assets/audio/mio-brano.mp3")
-  //  coverImage: percorso all'immagine copertina (es. "assets/covers/copertina1.jpg")
+  //  PORTFOLIO AUDIO & VIDEO — I TUOI BRANI/PROGETTI
+  //  Per tracce audio: inserisci audioFile e coverImage
+  //  Per video YouTube: inserisci youtubeId (l'ID dopo watch?v= nell'URL)
+  //    es. https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  youtubeId: "dQw4w9WgXcQ"
+  //  Puoi mescolare tracce audio e video nello stesso elenco.
   // ---------------------------------------------------------------------------
   tracks: [
     {
@@ -76,6 +77,12 @@ const siteData = {
       genre: "Trailer / Action",
       audioFile: "assets/audio/track-06.mp3",
       coverImage: "assets/covers/cover-06.jpg"
+    },
+    {
+      title: "Junkienator",
+      description: "Original score for an independent studio.",
+      genre: "Video Game / Indie",
+      youtubeId: "QVDxEfidNCY&list=PLYhi2FyI5Ke0Sl5brJXbbWsNKfOK7qzEK&index=1"   // ← the ID from the YouTube URL
     }
   ],
 
@@ -122,7 +129,7 @@ const siteData = {
   //  Lascia una stringa vuota "" per nascondere un'icona social.
   // ---------------------------------------------------------------------------
   contact: {
-    email: "jacoporomano74@gmail.com",
+    email: "",
     ctaText: "Got a project in mind?",
     ctaSubText: "Reach out — I'd love to hear about it."
   },
