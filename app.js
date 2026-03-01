@@ -161,29 +161,34 @@ function buildTrackCard(track, index) {
 
   // --- Audio card (original) ---
 
-  // ----- COVER IMAGE -----
-  const coverWrap = el('div', 'track-cover');
+  let overlayBtn = null;
 
-  if (track.coverImage) {
+  // ----- COVER IMAGE (solo se è presente e si tratta di audio + vogliamo mostrarla) -----
+  // Per le tracce "audio only" (senza youtubeId) non disegniamo la copertina,
+  // quindi anche se config.coverImage è specificata viene ignorata. Questo
+  // mantiene l'aspetto minimale richiesto dall'utente.
+
+  if (track.coverImage && track.youtubeId) {
+    // nel caso improbabile in cui un audio abbia anche un youtubeId lasciare la
+    // cover (anche se questa combinazione non viene usata normalmente).
+    const coverWrap = el('div', 'track-cover');
+
     const img = el('img');
     img.src     = track.coverImage;
     img.alt     = `Cover — ${track.title}`;
     img.loading = 'lazy';
     coverWrap.appendChild(img);
-  } else {
-    const placeholder = el('div', 'track-cover-placeholder');
-    placeholder.innerHTML = '<span class="cover-note-icon">♪</span>';
-    coverWrap.appendChild(placeholder);
-  }
 
-  // Overlay play al hover sulla cover
-  const overlay = el('div', 'track-play-overlay');
-  const overlayBtn = el('button', 'overlay-play-btn');
-  overlayBtn.innerHTML = svgPlay();
-  overlayBtn.setAttribute('aria-label', `Play ${track.title}`);
-  overlay.appendChild(overlayBtn);
-  coverWrap.appendChild(overlay);
-  card.appendChild(coverWrap);
+    // Overlay play al hover sulla cover
+    const overlay = el('div', 'track-play-overlay');
+    overlayBtn = el('button', 'overlay-play-btn');
+    overlayBtn.innerHTML = svgPlay();
+    overlayBtn.setAttribute('aria-label', `Play ${track.title}`);
+    overlay.appendChild(overlayBtn);
+    coverWrap.appendChild(overlay);
+
+    card.appendChild(coverWrap);
+  }
 
   // ----- CORPO CARD -----
   const body = el('div', 'track-body');
@@ -294,7 +299,9 @@ function buildAudioPlayer(track, overlayBtn) {
   }
 
   playBtn.addEventListener('click', togglePlay);
-  overlayBtn.addEventListener('click', togglePlay);
+  if (overlayBtn) {
+    overlayBtn.addEventListener('click', togglePlay);
+  }
 
   audio.addEventListener('play', () => {
     playBtn.classList.add('playing');

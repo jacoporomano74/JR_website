@@ -63,27 +63,6 @@ const siteData = {
       coverImage: "assets/covers/cover-03.jpg"
     },
     {
-      title: "Requiem for a Brand",
-      description: "Jingle e identità sonora per campagna pubblicitaria internazionale. Dal concept alla produzione finale.",
-      genre: "Commercial / Advertising",
-      audioFile: "assets/audio/track-04.mp3",
-      coverImage: "assets/covers/cover-04.jpg"
-    },
-    {
-      title: "Inner Voices",
-      description: "Colonna sonora per installazione artistica interattiva. Musica generativa che risponde ai movimenti del visitatore.",
-      genre: "Experimental / Art",
-      audioFile: "assets/audio/track-05.mp3",
-      coverImage: "assets/covers/cover-05.jpg"
-    },
-    {
-      title: "Storm Protocol",
-      description: "Action cinematic per trailer istituzionale. Percussioni massive, ottoni e sound design integrati.",
-      genre: "Trailer / Action",
-      audioFile: "assets/audio/track-06.mp3",
-      coverImage: "assets/covers/cover-06.jpg"
-    },
-    {
       title: "Junkienator - Main Theme",
       description: "by Interactive Dreams Studio",
       genre: "Video Game / Indie",
