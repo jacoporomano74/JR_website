@@ -15,17 +15,23 @@ const siteData = {
   heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sonic experience",
 
   // Pulsante hero — il click scorrerà alla sezione portfolio
-  heroCTA: "Ascolta i miei lavori",
+  heroCTA: "Listen",
 
   // ---------------------------------------------------------------------------
   //  SEZIONE "CHI SONO"
   // ---------------------------------------------------------------------------
   about: {
-    bio: "Sono un compositore e sound designer con oltre 10 anni di esperienza nel creare paesaggi sonori per media audiovisivi. Ho collaborato con registi, sviluppatori di videogiochi e brand internazionali, portando ogni progetto a un livello emotivo più profondo attraverso la musica.\n\nLa mia filosofia creativa unisce composizione orchestrale classica con suoni elettronici contemporanei, creando un linguaggio sonoro riconoscibile e versatile.",
+    bio: "I hold a Summa Cum Laude degree in Classical Guitar from Italy and have been recognized as a multi-award winner in international competitions. While my roots are in performance, my true calling has always been composing for film and video games. I am currently furthering my craft at Berklee Online College of Music, blending classical mastery with modern scoring. I’m driven by the challenge of creating immersive soundtracks that bring digital worlds to life.",
     // Inserisci il percorso alla tua foto profilo (es. "assets/foto-profilo.jpg")
     // Puoi usare anche un URL esterno: "https://esempio.com/mia-foto.jpg"
-    photo: "assets/profile.jpg",
-    photoAlt: "Foto profilo di Jacopo Romano"
+    photo: "assets/Foto/fotojj.jpg",
+    photoAlt: "Foto profilo di Jacopo Romano",
+    {
+      title: "Jacopo Romano",
+      description: "Guitarist",
+      genre: "Performance",
+      youtubeId: "Ln4F0ZXcEkw?si=1LlwRcH2U_q8ZQvS"   // ← the ID from the YouTube URL
+    }
   },
 
   // ---------------------------------------------------------------------------
