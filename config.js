@@ -25,13 +25,7 @@ const siteData = {
     // Inserisci il percorso alla tua foto profilo (es. "assets/foto-profilo.jpg")
     // Puoi usare anche un URL esterno: "https://esempio.com/mia-foto.jpg"
     photo: "assets/Foto/fotojj.jpg",
-    photoAlt: "Foto profilo di Jacopo Romano",
-    {
-      title: "Jacopo Romano",
-      description: "Guitarist",
-      genre: "Performance",
-      youtubeId: "Ln4F0ZXcEkw?si=1LlwRcH2U_q8ZQvS"   // ← the ID from the YouTube URL
-    }
+    photoAlt: "Foto profilo di Jacopo Romano"
   },
 
   // ---------------------------------------------------------------------------
