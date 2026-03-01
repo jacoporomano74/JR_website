@@ -82,7 +82,7 @@ const siteData = {
       title: "Junkienator",
       description: "Original score for an independent studio.",
       genre: "Video Game / Indie",
-      youtubeId: "QVDxEfidNCY&list=PLYhi2FyI5Ke0Sl5brJXbbWsNKfOK7qzEK&index=1"   // ← the ID from the YouTube URL
+      youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW"   // ← the ID from the YouTube URL
     }
   ],
 

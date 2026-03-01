@@ -622,7 +622,7 @@ ul { list-style: none; }
 }
 
 .service-card:last-child {
-  border-bottom: 1px solid var(--border);
+  border-bottom: none;
 }
 
 .service-icon {
