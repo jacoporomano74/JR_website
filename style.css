@@ -473,6 +473,7 @@ ul { list-style: none; }
   flex-shrink: 0;
   width: 40px;
   height: 40px;
+  /* No margin needed — align-items:center handles it against the canvas */
   border-radius: 50%;
   background: var(--accent);
   border: none;
@@ -497,35 +498,16 @@ ul { list-style: none; }
 .play-btn.playing .icon-play  { display: none; }
 .play-btn.playing .icon-pause { display: block; margin-left: 0; }
 
-/* Barra di progresso */
+/* Waveform canvas wraps it for flex growth */
 .player-progress-wrap {
   flex: 1;
+  min-width: 0;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  align-items: center;
+  overflow: visible;
 }
 
-.player-bar-track {
-  position: relative;
-  height: 3px;
-  background: var(--border);
-  border-radius: 3px;
-  cursor: pointer;
-  overflow: hidden;
-  transition: height var(--transition);
-}
-
-.player-bar-track:hover { height: 5px; }
-
-.player-bar-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(to right, var(--accent), var(--accent-light));
-  border-radius: 3px;
-  transition: width 0.1s linear;
-  pointer-events: none;
-}
-
+/* Times row sits below the controls row */
 .player-times {
   display: flex;
   justify-content: space-between;
@@ -533,9 +515,10 @@ ul { list-style: none; }
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
+  padding: 4px 0 0 54px; /* 54px = 40px button + 14px gap, aligns under the canvas */
 }
 
-/* Messaggio errore audio -->*/
+/* Messaggio errore audio */
 .audio-error {
   font-size: 0.75rem;
   color: #b05050;
@@ -771,26 +754,27 @@ ul { list-style: none; }
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   /* Nav mobile */
-  .nav-hamburger { display: flex; }
+  .nav-hamburger { display: flex; z-index: 101; position: relative; }
 
   .nav-links {
-    position: absolute;
+    display: none;
+    position: fixed;
     top: 68px;
     left: 0;
     right: 0;
     background: rgba(9, 9, 9, 0.97);
     backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
     gap: 4px;
     padding: 16px 20px 24px;
     border-bottom: 1px solid var(--border);
-    transform: translateY(-110%);
-    transition: transform var(--transition);
-    z-index: 99;
+    z-index: 100;
+    animation: none;
   }
 
   .nav-links.open {
-    transform: translateY(0);
+    display: flex;
   }
 
   .nav-link { padding: 12px 16px; font-size: 1rem; }
@@ -835,7 +819,7 @@ ul { list-style: none; }
    11. WAVEFORM CANVAS PLAYER
    -------------------------------------------------------------------------- */
 
-/* Il canvas sostituisce .player-bar-track */
+/* Il canvas sostituisce la vecchia barra piatta */
 .waveform-canvas {
   flex: 1;
   height: 48px;
@@ -844,11 +828,6 @@ ul { list-style: none; }
   display: block;
   /* forza dimensione corretta prima del primo paint */
   min-width: 0;
-}
-
-/* Rimuovi overflow:hidden dalla .player-progress-wrap per il canvas */
-.player-progress-wrap {
-  overflow: visible;
 }
 
 /* --------------------------------------------------------------------------

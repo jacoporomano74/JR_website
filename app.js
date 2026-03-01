@@ -214,11 +214,11 @@ function buildAudioPlayer(track, overlayBtn) {
 
   const progressWrap  = el('div', 'player-progress-wrap');
   progressWrap.appendChild(waveCanvas);
-  progressWrap.appendChild(times);
 
   controls.appendChild(playBtn);
   controls.appendChild(progressWrap);
   playerWrap.appendChild(controls);
+  playerWrap.appendChild(times);
 
   // Messaggio errore
   const errorMsg = el('p', 'audio-error');
