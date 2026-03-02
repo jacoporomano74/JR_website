@@ -16,6 +16,58 @@ document.addEventListener('DOMContentLoaded', () => {
   initAll();
 });
 
+/**
+ * Callback della YouTube API quando è pronta
+ */
+window.onYouTubeIframeAPIReady = function() {
+  // Inizializza tutti i player YouTube registrati
+  youtubePlayersList.forEach((item, index) => {
+    if (!item.player && item.videoId) {
+      const player = new YT.Player(item.elementId, {
+        videoId: item.videoId,
+        events: {
+          'onStateChange': onYoutubePlayerStateChange
+        }
+      });
+      youtubePlayersList[index].player = player;
+    }
+  });
+};
+
+/**
+ * Callback quando lo stato del player YouTube cambia
+ * States: -1=unstarted, 0=ended, 1=playing, 2=paused, 3=buffering, 5=video cued
+ */
+function onYoutubePlayerStateChange(event) {
+  if (event.data === 1) {
+    // Video is playing - stop all audio
+    stopAllAudio();
+    // also stop any other YouTube video that might be playing
+    youtubePlayersList.forEach(entry => {
+      const player = entry.player;
+      if (player && player !== event.target && typeof player.pauseVideo === 'function') {
+        player.pauseVideo();
+      }
+    });
+  }
+}
+
+/**
+ * Ferma solo gli audio
+ */
+function stopAllAudio() {
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    if (currentPlayBtn) {
+      currentPlayBtn.classList.remove('playing');
+      currentPlayBtn.setAttribute('aria-label', currentPlayBtn._trackTitle);
+    }
+    currentAudio = null;
+    currentPlayBtn = null;
+  }
+}
+
 // =============================================================================
 //  FUNZIONE PRINCIPALE
 // =============================================================================
@@ -159,6 +211,46 @@ function populateHero() {
 let currentAudio   = null;
 let currentPlayBtn = null;
 
+// Tiene traccia di tutti i player YouTube
+const youtubePlayersList = [];
+
+/**
+ * Ferma tutti gli audio e video attualmente in riproduzione
+ */
+function stopAllMedia() {
+  // Ferma tutti gli audio
+  if (currentAudio && !currentAudio.paused) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    if (currentPlayBtn) {
+      currentPlayBtn.classList.remove('playing');
+      currentPlayBtn.setAttribute('aria-label', currentPlayBtn._trackTitle);
+    }
+    currentAudio = null;
+    currentPlayBtn = null;
+  }
+  
+  // Ferma tutti i video YouTube
+  youtubePlayersList.forEach(entry => {
+    const player = entry.player;
+    if (player && typeof player.pauseVideo === 'function') {
+      player.pauseVideo();
+    }
+  });
+}
+
+/**
+ * Ferma solo i video YouTube
+ */
+function stopAllYoutubeVideos() {
+  youtubePlayersList.forEach(entry => {
+    const player = entry.player;
+    if (player && typeof player.pauseVideo === 'function') {
+      player.pauseVideo();
+    }
+  });
+}
+
 function populatePortfolio() {
   const grid = document.getElementById('tracks-grid');
   if (!grid) return;
@@ -179,14 +271,37 @@ function buildTrackCard(track, index) {
     card.classList.add('track-card--video');
 
     const embedWrap = el('div', 'track-youtube-wrap');
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube.com/embed/${track.youtubeId}`;
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-    iframe.setAttribute('loading', 'lazy');
-    iframe.setAttribute('title', track.title);
-    embedWrap.appendChild(iframe);
+    
+    // Estrai solo l'ID video (rimuovi i parametri dopo ?)
+    const videoId = track.youtubeId.split('?')[0];
+    const playerId = `youtube-player-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    
+    // Crea il div per il player YouTube
+    const playerDiv = document.createElement('div');
+    playerDiv.id = playerId;
+    playerDiv.style.width = '100%';
+    playerDiv.style.height = '100%';
+    
+    embedWrap.appendChild(playerDiv);
     card.appendChild(embedWrap);
+    
+    // Registra il player per l'inizializzazione con la YouTube API
+    youtubePlayersList.push({
+      elementId: playerId,
+      videoId: videoId,
+      player: null
+    });
+    
+    // Se la YouTube API è già carica, inizializza subito
+    if (window.YT && window.YT.Player) {
+      const player = new YT.Player(playerId, {
+        videoId: videoId,
+        events: {
+          'onStateChange': onYoutubePlayerStateChange
+        }
+      });
+      youtubePlayersList[youtubePlayersList.length - 1].player = player;
+    }
 
     const body = el('div', 'track-body');
     if (track.genre) {
@@ -328,6 +443,7 @@ function buildAudioPlayer(track, overlayBtn) {
   // ----- EVENTI AUDIO -----
   function togglePlay() {
     if (audio.paused) {
+      // Stop any other audio before playing this one
       if (currentAudio && currentAudio !== audio) {
         currentAudio.pause();
         currentAudio.currentTime = 0;
@@ -336,6 +452,10 @@ function buildAudioPlayer(track, overlayBtn) {
           currentPlayBtn.setAttribute('aria-label', currentPlayBtn._trackTitle);
         }
       }
+      
+      // Stop all YouTube videos
+      stopAllYoutubeVideos();
+      
       audio.play().catch(() => { errorMsg.style.display = 'block'; });
       currentAudio   = audio;
       currentPlayBtn = playBtn;
@@ -419,13 +539,35 @@ function populateAbout() {
   // *** video YouTube (facoltativo) ***
   const videoContainer = document.getElementById('about-video');
   if (videoContainer && siteData.about.youtubeId) {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube.com/embed/${siteData.about.youtubeId}`;
-    iframe.setAttribute('allowfullscreen', '');
-    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-    iframe.setAttribute('loading', 'lazy');
-    iframe.setAttribute('title', siteData.name + ' video');
-    videoContainer.appendChild(iframe);
+    // Estrai solo l'ID video (rimuovi i parametri dopo ?)
+    const videoId = siteData.about.youtubeId.split('?')[0];
+    const playerId = `youtube-player-about-${Date.now()}`;
+    
+    // Crea il div per il player YouTube
+    const playerDiv = document.createElement('div');
+    playerDiv.id = playerId;
+    playerDiv.style.width = '100%';
+    playerDiv.style.height = '100%';
+    
+    videoContainer.appendChild(playerDiv);
+    
+    // Registra il player per l'inizializzazione con la YouTube API
+    youtubePlayersList.push({
+      elementId: playerId,
+      videoId: videoId,
+      player: null
+    });
+    
+    // Se la YouTube API è già carica, inizializza subito
+    if (window.YT && window.YT.Player) {
+      const player = new YT.Player(playerId, {
+        videoId: videoId,
+        events: {
+          'onStateChange': onYoutubePlayerStateChange
+        }
+      });
+      youtubePlayersList[youtubePlayersList.length - 1].player = player;
+    }
   }
 }
 
