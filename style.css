@@ -184,6 +184,84 @@ ul { list-style: none; }
   overflow: hidden;
 }
 
+/* background image placed in ::before so it can be blurred
+   and positioned via CSS variables (--hero-bg-x / --hero-bg-y).
+   Mobile overrides use --hero-bg-x-mobile / --hero-bg-y-mobile. */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-bg, url('assets/Foto/sfondo1.jpg'));
+  background-position: var(--hero-bg-x, 50%) var(--hero-bg-y, 50%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  transition: filter 0.3s, background-position 0.3s;
+  filter: blur(var(--hero-blur, 0));
+}
+
+/* light shadow gradient overlay to push image into background */
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* subtle dark gradient, stronger at edges */
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.25) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* blur amount controlled via CSS variable for gradual effect */
+
+/* Mobile: use mobile-specific background-position if provided */
+@media (max-width: 768px) {
+  #hero::before {
+    background-position: var(--hero-bg-x-mobile, var(--hero-bg-x, 50%)) var(--hero-bg-y-mobile, var(--hero-bg-y, 50%));
+    /* smartphone: add a bit of blur to push image further back */
+    filter: blur(calc(var(--hero-blur, 0) + 4px));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   DEBUG CONTROLS FOR HERO BACKGROUND
+   Visible panel with sliders to tweak X/Y offsets live.
+   Only shown when siteData.debugHeroControls === true (enabled in config.js)
+   -------------------------------------------------------------------------- */
+.hero-control-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  z-index: 2000;
+  backdrop-filter: blur(4px);
+}
+.hero-control-panel label {
+  display: block;
+  margin-bottom: 6px;
+}
+.hero-control-panel input[type=range] {
+  width: 120px;
+}
+.hero-control-panel h4 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+}
+
+
+
+/* make sure content floats above overlay and stays centered */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
 /* Alone luminoso decorativo */
 .hero-glow {
   position: absolute;
@@ -204,6 +282,8 @@ ul { list-style: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   gap: 24px;
 }
 
@@ -224,25 +304,26 @@ ul { list-style: none; }
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  background: linear-gradient(160deg, #f5f2ed 30%, #a09070 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--text-primary);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
+
 .hero-sub {
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--text-secondary);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  /* slightly faded white to keep it subordinate to the main phrase */
+  color: rgba(240,237,232,0.85);
   max-width: 560px;
-  font-weight: 400;
-  line-height: 1.7;
+  font-weight: 500;
+  line-height: 1.75;
 }
 
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--accent);
+  /* brighter accent background */
+  background: var(--accent-light);
   color: #0a0804;
   font-weight: 700;
   font-size: 0.9rem;
@@ -252,6 +333,7 @@ ul { list-style: none; }
   transition: background var(--transition), transform var(--transition),
               box-shadow var(--transition);
   margin-top: 8px;
+  box-shadow: 0 4px 12px rgba(200,169,110,0.5);
 }
 
 .btn-primary::after {
@@ -565,10 +647,12 @@ ul { list-style: none; }
 
 
 .about-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 100px);
+  /* switch to single centered column when photo removed */
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: clamp(40px, 6vw, 100px);
+  text-align: center; /* center text inside */
 }
 
 .about-bio {
@@ -584,35 +668,12 @@ ul { list-style: none; }
 .about-bio p { }
 
 /* Immagine profilo */
-.about-image-wrap {
-  position: relative;
-}
-
-.about-image-frame {
-  position: relative;
-  z-index: 1;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  aspect-ratio: 4 / 5;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-}
-
-.about-image-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-}
-
-/* Elemento decorativo dietro la foto */
+/* about-image styles removed since photo not used */
+.about-image-wrap,
+.about-image-frame,
+.about-image-frame img,
 .about-image-deco {
-  position: absolute;
-  inset: 16px -16px -16px 16px;
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-lg);
-  z-index: 0;
-  pointer-events: none;
+  display: none !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -983,4 +1044,9 @@ textarea.form-input {
 #hero.has-bg-image .hero-scroll-indicator {
   position: relative;
   z-index: 1;
+}
+
+/* when a background image is used, hide the decorative golden glow */
+#hero.has-bg-image .hero-glow {
+  display: none;
 }

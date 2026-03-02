@@ -30,6 +30,8 @@ function initAll() {
   populateContact();
   applyBackgrounds();
   initNavbarScroll();
+  initHeroBlur();
+  initHeroControls();
   initHamburger();
   initScrollReveal();
 }
@@ -72,6 +74,51 @@ function initNavbarScroll() {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // stato iniziale
+}
+
+// sfoca progressivamente lo sfondo dell'hero quando si scrolla
+function initHeroBlur() {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+  const maxBlur = 6; // px
+  const scrollRange = window.innerHeight; // blur fully by the viewport height
+
+  const onScroll = () => {
+    const y = Math.min(window.scrollY, scrollRange);
+    const amount = (y / scrollRange) * maxBlur;
+    hero.style.setProperty('--hero-blur', amount + 'px');
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// create interactive controls for adjusting hero background offsets
+function initHeroControls() {
+  if (!siteData.debugHeroControls) return;
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+
+  const panel = document.createElement('div');
+  panel.className = 'hero-control-panel';
+  panel.innerHTML = `
+    <h4>Hero background</h4>
+    <label>X: <input type="range" min="0" max="100" value="${hero.style.getPropertyValue('--hero-bg-x')||50}" data-axis="x"></label>
+    <label>Y: <input type="range" min="0" max="100" value="${hero.style.getPropertyValue('--hero-bg-y')||50}" data-axis="y"></label>
+    <small>mobile:<br>
+      X <input type="range" min="0" max="100" value="${hero.style.getPropertyValue('--hero-bg-x-mobile')||hero.style.getPropertyValue('--hero-bg-x')||50}" data-axis="x-mobile"><br>
+      Y <input type="range" min="0" max="100" value="${hero.style.getPropertyValue('--hero-bg-y-mobile')||hero.style.getPropertyValue('--hero-bg-y')||50}" data-axis="y-mobile">
+    </small>
+  `;
+
+  document.body.appendChild(panel);
+
+  panel.querySelectorAll('input[type=range]').forEach(input => {
+    input.addEventListener('input', () => {
+      const axis = input.getAttribute('data-axis');
+      hero.style.setProperty(`--hero-bg-${axis}`, input.value + '%');
+    });
+  });
 }
 
 // Hamburger menu per mobile
@@ -551,13 +598,22 @@ function applyBackgrounds() {
     contact:   document.getElementById('contact')
   };
   Object.entries(bg).forEach(([key, url]) => {
-    if (url && map[key]) {
+    if (!url || !map[key]) return;
+    if (key === 'hero') {
+      // hero uses ::before with CSS variables for image and positioning
+      map[key].style.setProperty('--hero-bg', `url('${url}')`);
+      // support optional offsets configuration
+      if (bg.heroY) map[key].style.setProperty('--hero-bg-y', bg.heroY);
+      if (bg.heroX) map[key].style.setProperty('--hero-bg-x', bg.heroX);
+      if (bg.heroYMobile) map[key].style.setProperty('--hero-bg-y-mobile', bg.heroYMobile);
+      if (bg.heroXMobile) map[key].style.setProperty('--hero-bg-x-mobile', bg.heroXMobile);
+    } else {
       map[key].style.backgroundImage    = `url('${url}')`;
       map[key].style.backgroundSize     = 'cover';
       map[key].style.backgroundPosition = 'center';
       map[key].style.backgroundRepeat   = 'no-repeat';
-      map[key].classList.add('has-bg-image');
     }
+    map[key].classList.add('has-bg-image');
   });
 }
 

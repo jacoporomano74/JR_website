@@ -27,7 +27,7 @@ const siteData = {
     bio: "I hold a Summa Cum Laude degree in Classical Guitar from Italy and have been recognized as a multi-award winner in international competitions. While my roots are in performance, my true calling has always been composing for film and video games.\n\n I am currently furthering my craft at Berklee Online College of Music, blending classical mastery with modern scoring. I’m driven by the challenge of creating immersive soundtracks that bring digital worlds to life.",
     // Inserisci il percorso alla tua foto profilo (es. "assets/foto-profilo.jpg")
     // Puoi usare anche un URL esterno: "https://esempio.com/mia-foto.jpg"
-    photo: "assets/Foto/fotojj.jpg",
+    photo: "",
     photoAlt: "Foto profilo di Jacopo Romano",
     // ID YouTube (facoltativo): ad esempio "dQw4w9WgXcQ" senza parametri
     youtubeId: "Ln4F0ZXcEkw?si=1LlwRcH2U_q8ZQvS"
@@ -207,9 +207,20 @@ const siteData = {
   //  IMMAGINI DI SFONDO SEZIONI
   //  Inserisci il percorso all'immagine (es. "assets/bg-hero.jpg")
   //  oppure un URL esterno. Lascia "" per usare il colore di default.
+  //  Per l'hero puoi anche specificare offset orizzontale/verticale
+  //  - entrambe accettano percentuali oppure pixel
+  //    backgrounds.heroX = "40%";       // sposta orizzontalmente
+  //    backgrounds.heroY = "60%";       // sposta verticalmente
+  //  e sono disponibili versioni separate per mobile:
+  //    backgrounds.heroXMobile = "30%";
+  //    backgrounds.heroYMobile = "50%";
   // ---------------------------------------------------------------------------
   backgrounds: {
-    hero:      "",   // Sfondo sezione Hero      (es. "assets/bg-hero.jpg")
+    hero:      "assets/Foto/sfondo1.png",   // Sfondo sezione Hero      (es. "assets/bg-hero.jpg")
+    heroX:     "35%", // Opzionale: asse X (es. "40%" o "center")
+    heroY:     "25%", // Opzionale: verticale posizione immagine
+    heroXMobile: "30%", // Opzionale: asse X per mobile
+    heroYMobile: "15%", // Opzionale: verticale posizione per mobile
     portfolio: "",   // Sfondo sezione Portfolio
     about:     "",   // Sfondo sezione Chi Sono
     services:  "",   // Sfondo sezione Servizi
