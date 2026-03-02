@@ -274,33 +274,37 @@ function buildTrackCard(track, index) {
     
     // Estrai solo l'ID video (rimuovi i parametri dopo ?)
     const videoId = track.youtubeId.split('?')[0];
-    const playerId = `youtube-player-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    
-    // Crea il div per il player YouTube
-    const playerDiv = document.createElement('div');
-    playerDiv.id = playerId;
-    playerDiv.style.width = '100%';
-    playerDiv.style.height = '100%';
-    
-    embedWrap.appendChild(playerDiv);
+    const iframeId = `youtube-iframe-${Date.now()}-${Math.random().toString(36).substr(2,9)}`;
+
+    // Crea iframe con enablejsapi per poterlo poi controllare
+    const iframe = document.createElement('iframe');
+    iframe.id = iframeId;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
+    iframe.setAttribute('allowfullscreen','');
+    iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('loading','lazy');
+    iframe.setAttribute('title', track.title);
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+
+    embedWrap.appendChild(iframe);
     card.appendChild(embedWrap);
-    
-    // Registra il player per l'inizializzazione con la YouTube API
+
+    // registra iframe per inizializzazione
     youtubePlayersList.push({
-      elementId: playerId,
+      elementId: iframeId,
       videoId: videoId,
       player: null
     });
-    
-    // Se la YouTube API è già carica, inizializza subito
+
+    // se API già pronta, crea player immediatamente
     if (window.YT && window.YT.Player) {
-      const player = new YT.Player(playerId, {
-        videoId: videoId,
+      const player = new YT.Player(iframeId, {
         events: {
           'onStateChange': onYoutubePlayerStateChange
         }
       });
-      youtubePlayersList[youtubePlayersList.length - 1].player = player;
+      youtubePlayersList[youtubePlayersList.length-1].player = player;
     }
 
     const body = el('div', 'track-body');
@@ -541,32 +545,33 @@ function populateAbout() {
   if (videoContainer && siteData.about.youtubeId) {
     // Estrai solo l'ID video (rimuovi i parametri dopo ?)
     const videoId = siteData.about.youtubeId.split('?')[0];
-    const playerId = `youtube-player-about-${Date.now()}`;
+    const iframeId = `youtube-iframe-about-${Date.now()}`;
     
-    // Crea il div per il player YouTube
-    const playerDiv = document.createElement('div');
-    playerDiv.id = playerId;
-    playerDiv.style.width = '100%';
-    playerDiv.style.height = '100%';
+    const iframe = document.createElement('iframe');
+    iframe.id = iframeId;
+    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
+    iframe.setAttribute('allowfullscreen','');
+    iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('loading','lazy');
+    iframe.setAttribute('title', siteData.name + ' video');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
     
-    videoContainer.appendChild(playerDiv);
+    videoContainer.appendChild(iframe);
     
-    // Registra il player per l'inizializzazione con la YouTube API
     youtubePlayersList.push({
-      elementId: playerId,
+      elementId: iframeId,
       videoId: videoId,
       player: null
     });
     
-    // Se la YouTube API è già carica, inizializza subito
     if (window.YT && window.YT.Player) {
-      const player = new YT.Player(playerId, {
-        videoId: videoId,
+      const player = new YT.Player(iframeId, {
         events: {
           'onStateChange': onYoutubePlayerStateChange
         }
       });
-      youtubePlayersList[youtubePlayersList.length - 1].player = player;
+      youtubePlayersList[youtubePlayersList.length-1].player = player;
     }
   }
 }
