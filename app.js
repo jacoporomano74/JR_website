@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   initAll();
+
+  // *** fallback: pause quando un iframe YouTube riceve focus ***
+  window.addEventListener('focusin', (e) => {
+    const el = e.target;
+    if (el.tagName === 'IFRAME' && el.src && el.src.includes('youtube.com')) {
+      console.log('iframe gained focus, stopping media');
+      stopAllMedia();
+    }
+  });
 });
 
 /**
@@ -39,6 +48,7 @@ window.onYouTubeIframeAPIReady = function() {
  * States: -1=unstarted, 0=ended, 1=playing, 2=paused, 3=buffering, 5=video cued
  */
 function onYoutubePlayerStateChange(event) {
+  console.log('YT state change', event.data, event.target);
   if (event.data === 1) {
     // Video is playing - stop all audio
     stopAllAudio();
