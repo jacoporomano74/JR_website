@@ -230,11 +230,22 @@ function stopAllMedia() {
     currentPlayBtn = null;
   }
   
-  // Ferma tutti i video YouTube
+  // Ferma tutti i video YouTube conosciuti
   youtubePlayersList.forEach(entry => {
     const player = entry.player;
     if (player && typeof player.pauseVideo === 'function') {
       player.pauseVideo();
+    }
+  });
+  
+  // fallback: invia messaggio postMessage a eventuali iframe YouTube non gestiti
+  document.querySelectorAll('iframe').forEach(iframe => {
+    if (iframe.src && iframe.src.includes('youtube.com/embed')) {
+      iframe.contentWindow.postMessage(JSON.stringify({
+        event: 'command',
+        func: 'pauseVideo',
+        args: []
+      }), '*');
     }
   });
 }
@@ -289,6 +300,11 @@ function buildTrackCard(track, index) {
 
     embedWrap.appendChild(iframe);
     card.appendChild(embedWrap);
+
+    // When iframe is clicked (user starts playback) always pause other media
+    embedWrap.addEventListener('click', () => {
+      stopAllMedia();
+    });
 
     // registra iframe per inizializzazione
     youtubePlayersList.push({
@@ -558,6 +574,11 @@ function populateAbout() {
     iframe.style.height = '100%';
     
     videoContainer.appendChild(iframe);
+    
+    // whenever about-video is clicked, pause other media too
+    videoContainer.addEventListener('click', () => {
+      stopAllMedia();
+    });
     
     youtubePlayersList.push({
       elementId: iframeId,
