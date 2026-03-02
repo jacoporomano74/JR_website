@@ -95,7 +95,55 @@ function initAll() {
   initHeroBlur();
   initHeroControls();
   initHamburger();
+  initPageIntro();
   initScrollReveal();
+}
+
+/**
+ * Page intro: staggered appearance for hero texts on first load
+ */
+function initPageIntro() {
+  // Only activate intro when page is at the top
+  if (window.scrollY > 48) return;
+
+  const ids = ['hero-tagline', 'hero-phrase', 'hero-subphrase', 'hero-cta'];
+  const els = ids.map(id => document.getElementById(id)).filter(Boolean);
+  if (!els.length) return;
+
+  const baseDelay = 300; // ms before first item
+  const step = 160; // stagger per item
+
+  // Mark these elements to WAIT for the user's click before showing.
+  els.forEach((el, i) => {
+    el.dataset.waitIntro = 'true';
+    el.classList.add('reveal');
+    el.style.setProperty('--reveal-delay', `${baseDelay + i * step}ms`);
+  });
+
+  // One-time click handler: when the user clicks the page, play the intro.
+  const onFirstClick = () => {
+    pageIntroPlayed = true;
+    els.forEach((el, i) => {
+      // remove the wait flag so observer won't block
+      delete el.dataset.waitIntro;
+      setTimeout(() => el.classList.add('visible'), baseDelay + i * step);
+    });
+  };
+
+  // Attach a one-time click so users can trigger immediately
+  document.addEventListener('click', () => {
+    if (!pageIntroPlayed) {
+      // cancel auto timer if present
+      if (autoIntroTimer) clearTimeout(autoIntroTimer);
+      onFirstClick();
+    }
+  }, { once: true });
+
+  // Auto-start intro after a short timeout so it appears without requiring click
+  const autoStartDelay = 300; // ms until we start the intro automatically
+  let autoIntroTimer = setTimeout(() => {
+    if (!pageIntroPlayed) onFirstClick();
+  }, autoStartDelay);
 }
 
 // =============================================================================
@@ -223,6 +271,9 @@ let currentPlayBtn = null;
 
 // Tiene traccia di tutti i player YouTube
 const youtubePlayersList = [];
+
+// Flag: whether the page intro (hero stagger) has been played
+let pageIntroPlayed = false;
 
 /**
  * Ferma tutti gli audio e video attualmente in riproduzione
@@ -742,6 +793,24 @@ function populateContact() {
 //  SCROLL REVEAL — Animazione entrata elementi
 // =============================================================================
 function initScrollReveal() {
+  // Ensure hero texts and about paragraphs are part of the reveal set
+  const heroIds = ['hero-tagline', 'hero-phrase', 'hero-subphrase', 'hero-cta'];
+  heroIds.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', `${i * 120}ms`);
+    }
+  });
+
+  const aboutBio = document.getElementById('about-bio');
+  if (aboutBio) {
+    Array.from(aboutBio.children).forEach((p, i) => {
+      p.classList.add('reveal');
+      p.style.setProperty('--reveal-delay', `${i * 80}ms`);
+    });
+  }
+
   const items = document.querySelectorAll('.reveal');
 
   if (!('IntersectionObserver' in window)) {
@@ -750,14 +819,35 @@ function initScrollReveal() {
     return;
   }
 
+  // Replay animations when element comes into view (both directions)
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+      const el = entry.target;
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target); // anima solo una volta
+        // If this element was marked to wait for the page intro, skip until
+        // the intro has been played by the user's click.
+        if (el.dataset && el.dataset.waitIntro === 'true' && !pageIntroPlayed) {
+          return;
+        }
+
+        // Add visible so CSS animation runs. Removing on exit lets it replay.
+        el.classList.add('visible');
+        // Special case: if element has an ongoing CSS animation we want to restart,
+        // force reflow by toggling inline animation when necessary (e.g. scroll-line)
+        if (el.classList.contains('scroll-line')) {
+          el.style.animation = 'none';
+          // next frame restore to restart
+          requestAnimationFrame(() => { el.style.animation = ''; });
+        }
+      } else {
+        // Remove class so animation can replay when re-entering viewport
+        el.classList.remove('visible');
+        if (el.classList.contains('scroll-line')) {
+          el.style.animation = 'none';
+        }
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.12, rootMargin: '0px 0px -10px 0px' });
 
   items.forEach(item => observer.observe(item));
 }
