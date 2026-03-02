@@ -12,7 +12,7 @@ const siteData = {
   name: "Jacopo Romano",         // Il tuo nome (appare nel navbar e nell'hero)
   tagline: "Composer & Sound Designer",  // La tua qualifica
   heroPhrase: "Jacopo Romano",  // Frase grande nell'hero
-  heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sonic experience",
+  heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sound experience",
 
   // Pulsante hero — il click scorrerà alla sezione portfolio
   heroCTA: "Listen",
@@ -170,11 +170,11 @@ const siteData = {
   },
 
   social: {
-    spotify:    "https://open.spotify.com/artist/TUO-ID",    // URL profilo Spotify
-    soundcloud: "https://soundcloud.com/tuo-profilo",        // URL profilo SoundCloud
-    instagram:  "https://instagram.com/tuo-profilo",         // URL profilo Instagram
-    linkedin:   "https://linkedin.com/in/tuo-profilo",       // URL profilo LinkedIn
-    youtube:    ""                                            // Lascia vuoto per nasconderlo
+    spotify:    "",                                            // Lascia vuoto per nasconderlo
+    soundcloud: "",                                            // Lascia vuoto per nasconderlo
+    instagram:  "https://www.instagram.com/jacoporomano74/",         // URL profilo Instagram
+    linkedin:   "",                                            // Lascia vuoto per nasconderlo
+    youtube:    "https://www.youtube.com/@jacoporomano7062"                                            // Lascia vuoto per nasconderlo
   },
 
   // ---------------------------------------------------------------------------
