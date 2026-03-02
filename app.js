@@ -483,8 +483,8 @@ function buildAudioPlayer(track, overlayBtn) {
         }
       }
       
-      // Stop all YouTube videos
-      stopAllYoutubeVideos();
+      // Stop all media (YouTube via API or postMessage fallback)
+      stopAllMedia();
       
       audio.play().catch(() => { errorMsg.style.display = 'block'; });
       currentAudio   = audio;
