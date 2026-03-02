@@ -216,7 +216,7 @@ const siteData = {
   //    backgrounds.heroYMobile = "50%";
   // ---------------------------------------------------------------------------
   backgrounds: {
-    hero:      "assets/Foto/sfondo1.png",   // Sfondo sezione Hero      (es. "assets/bg-hero.jpg")
+    hero:      "assets/Foto/sfondo.jpg",   // Sfondo sezione Hero      (es. "assets/bg-hero.jpg")
     heroX:     "35%", // Opzionale: asse X (es. "40%" o "center")
     heroY:     "25%", // Opzionale: verticale posizione immagine
     heroXMobile: "30%", // Opzionale: asse X per mobile
