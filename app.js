@@ -240,6 +240,7 @@ function initHamburger() {
     const isOpen = links.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
   });
 
   // Chiudi menu al click su un link
@@ -247,6 +248,7 @@ function initHamburger() {
     link.addEventListener('click', () => {
       links.classList.remove('open');
       btn.classList.remove('open');
+      document.body.classList.remove('menu-open');
     });
   });
 }

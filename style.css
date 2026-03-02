@@ -913,13 +913,15 @@ ul { list-style: none; }
     top: 68px;
     left: 0;
     right: 0;
-    background: rgba(9, 9, 9, 0.97);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    /* transparent background; blur applied to body when open */
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     flex-direction: column;
-    gap: 4px;
-    padding: 16px 20px 24px;
-    border-bottom: 1px solid var(--border);
+    gap: 18px;               /* extra space between items */
+    padding: 18px 22px 28px;
+    /* border removed for cleaner look */
+    border-bottom: none;
     z-index: 100;
     animation: none;
   }
@@ -928,7 +930,14 @@ ul { list-style: none; }
     display: flex;
   }
 
-  .nav-link { padding: 12px 16px; font-size: 1rem; }
+  .nav-link { padding: 14px 20px; font-size: 1rem; }
+
+  /* blur the rest of the page when hamburger menu is open */
+  body.menu-open > :not(#navbar) {
+    filter: blur(10px) brightness(0.7);
+    transition: filter 0.3s ease;
+    pointer-events: none; /* prevent interaction while menu open */
+  }
 
   /* Hero */
   #hero { text-align: center; }
