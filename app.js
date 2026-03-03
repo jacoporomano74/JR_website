@@ -237,18 +237,36 @@ function initHamburger() {
   const links = document.getElementById('nav-links');
 
   btn.addEventListener('click', () => {
-    const isOpen = links.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    btn.setAttribute('aria-expanded', isOpen);
-    document.body.classList.toggle('menu-open', isOpen);
+    const isOpen = links.classList.contains('open');
+    if (isOpen) {
+      // Chiusura con animazione
+      links.classList.remove('open');
+      links.classList.add('closing');
+      btn.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      setTimeout(() => {
+        links.classList.remove('closing');
+      }, 350);
+    } else {
+      // Apertura
+      links.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', true);
+      document.body.classList.add('menu-open');
+    }
   });
 
   // Chiudi menu al click su un link
   links.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       links.classList.remove('open');
+      links.classList.add('closing');
       btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
       document.body.classList.remove('menu-open');
+      setTimeout(() => {
+        links.classList.remove('closing');
+      }, 350);
     });
   });
 }
