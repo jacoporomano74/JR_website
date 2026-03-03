@@ -114,7 +114,7 @@ const siteData = {
     {
       icon: "🎮",
       title: "Music for Video Games",
-      description: "Adaptive scores and memorable themes for games of every genre. From single-room indies to AAA titles."
+      description: "Adaptive scores and memorable themes for games of every genre. From indie projects to AAA titles, implementation with FMOD and WWise."
     },
     {
       icon: "🔊",
