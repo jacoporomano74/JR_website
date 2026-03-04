@@ -150,7 +150,8 @@ function initPageIntro() {
 //  META — Titolo pagina
 // =============================================================================
 function populateMeta() {
-  document.title = `${siteData.name} — ${siteData.tagline}`;
+  // Use a colon between name and tagline for consistency with SEO requirement
+  document.title = `${siteData.name}: ${siteData.tagline}`;
 }
 
 // =============================================================================
