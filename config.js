@@ -50,14 +50,14 @@ const siteData = {
     },
     {
       title: "Before Battle",
-      description: "Videogame action Track.",
+      description: "Videogame/Film track",
       genre: "Epic / Action",
       audioFile: "assets/audio/Beforebattle.wav",
       coverImage: "assets/covers/cover-02.jpg"
     },
     {
       title: "The Beloved Queen",
-      description: "Videogame Side Character Track",
+      description: "Videogame/Film Character Track",
       genre: "Nostalgic / Emotional",
       audioFile: "assets/audio/The Beloved Queen.wav",
       coverImage: "assets/covers/cover-03.jpg"
