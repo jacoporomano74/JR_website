@@ -165,7 +165,7 @@ const siteData = {
     messagePlaceholder: "Tell me about your project...",
     submitText:         "Send Message",
     sendingText:        "Sending...",
-    successMessage:     "Thanks! I'll get back to you soon.",
+    successMessage:     "Thanks! I'll get back to you as soon as possible.",
     errorMessage:       "Something went wrong. Please try again or send a direct email."
   },
 
