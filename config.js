@@ -24,7 +24,7 @@ const siteData = {
   // dopo "watch?v=") in youtubeId. Lascia il campo vuoto o rimuovilo per non
   // mostrare alcun video.
   about: {
-    bio: "I hold a Summa Cum Laude degree in Classical Guitar from Italy and have been recognized as a multi-award winner in international competitions. While my roots are in performance, my true calling has always been composing for film and video games.\n\n I am currently furthering my craft at Berklee Online College of Music, blending classical mastery with modern scoring. I’m driven by the challenge of creating immersive soundtracks that bring digital worlds to life.",
+    bio: "I hold a Summa Cum Laude degree in Classical Guitar from Italy and have been recognized as a multi-award winner in international competitions. While my roots are in performance, my true calling has always been composing for film and video games.\n\n I am currently furthering my craft at Berklee Online College of Music, blending classical mastery with modern scoring. I’m driven by the challenge of creating immersive soundtracks and SFX that bring digital worlds to life.",
     // Inserisci il percorso alla tua foto profilo (es. "assets/foto-profilo.jpg")
     // Puoi usare anche un URL esterno: "https://esempio.com/mia-foto.jpg"
     photo: "",
