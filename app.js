@@ -236,54 +236,10 @@ function initHeroControls() {
 function initHamburger() {
   const btn   = document.getElementById('nav-hamburger');
   const links = document.getElementById('nav-links');
-  let mobileScrollRaf = null;
-
-  const smoothScrollToHashMobile = (hash, duration = 980) => {
-    if (!hash || !hash.startsWith('#')) return;
-
-    const target = document.querySelector(hash);
-    if (!target) return;
-
-    const navbar = document.getElementById('navbar');
-    const navbarHeight = navbar ? navbar.offsetHeight : 0;
-    const startY = window.pageYOffset;
-    const targetY = target.getBoundingClientRect().top + startY - navbarHeight + 1;
-    const distance = targetY - startY;
-
-    if (Math.abs(distance) < 2) return;
-
-    // Faster start, smooth end: avoids the "hesitation" at animation start.
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
-
-    if (mobileScrollRaf) {
-      window.cancelAnimationFrame(mobileScrollRaf);
-      mobileScrollRaf = null;
-    }
-
-    let startTime = null;
-    const step = (timestamp) => {
-      if (startTime === null) startTime = timestamp;
-
-      const elapsed = timestamp - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOutCubic(progress);
-
-      window.scrollTo(0, startY + distance * eased);
-
-      if (progress < 1) {
-        mobileScrollRaf = window.requestAnimationFrame(step);
-      } else {
-        mobileScrollRaf = null;
-      }
-    };
-
-    mobileScrollRaf = window.requestAnimationFrame(step);
-  };
 
   btn.addEventListener('click', () => {
     const isOpen = links.classList.contains('open');
     if (isOpen) {
-      // Chiusura con animazione
       links.classList.remove('open');
       links.classList.add('closing');
       btn.classList.remove('open');
@@ -292,7 +248,6 @@ function initHamburger() {
         links.classList.remove('closing');
       }, 350);
     } else {
-      // Apertura
       links.classList.add('open');
       btn.classList.add('open');
       btn.setAttribute('aria-expanded', true);
@@ -300,59 +255,17 @@ function initHamburger() {
     }
   });
 
-  // Chiudi menu al click su un link (comportamento nativo come desktop)
+  // Chiudi menu al click su un link
   links.querySelectorAll('a').forEach(link => {
-    let mobileHandledAt = 0;
-
-    link.addEventListener('click', (e) => {
-      const now = Date.now();
-      const href = link.getAttribute('href') || '';
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-      // If touch already handled this interaction on pointerdown, skip click
-      if (isMobile && now - mobileHandledAt < 320) {
-        e.preventDefault();
-        return;
-      }
-
-      // On mobile keep the same feel, just slightly slower and continuous
-      if (isMobile && href.startsWith('#')) {
-        e.preventDefault();
-      }
-
+    link.addEventListener('click', () => {
       links.classList.remove('open');
+      links.classList.add('closing');
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', false);
       document.body.classList.remove('menu-open');
-
-      if (isMobile && href.startsWith('#')) {
-        // On mobile close immediately to keep scrolling smooth.
+      setTimeout(() => {
         links.classList.remove('closing');
-        smoothScrollToHashMobile(href, 980);
-      } else {
-        links.classList.add('closing');
-        setTimeout(() => {
-          links.classList.remove('closing');
-        }, 350);
-      }
-    });
-
-    // Start immediately on touch press to reduce tap-to-motion latency
-    link.addEventListener('pointerdown', (e) => {
-      const href = link.getAttribute('href') || '';
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!isMobile || e.pointerType !== 'touch' || !href.startsWith('#')) return;
-
-      mobileHandledAt = Date.now();
-      e.preventDefault();
-
-      links.classList.remove('open');
-      links.classList.remove('closing');
-      btn.classList.remove('open');
-      btn.setAttribute('aria-expanded', false);
-      document.body.classList.remove('menu-open');
-
-      smoothScrollToHashMobile(href, 980);
+      }, 350);
     });
   });
 }
