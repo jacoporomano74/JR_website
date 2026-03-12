@@ -257,7 +257,7 @@ function initHamburger() {
     }
   });
 
-  // Chiudi menu al click su un link
+  // Chiudi menu al click su un link (comportamento nativo come desktop)
   links.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       links.classList.remove('open');
@@ -265,6 +265,7 @@ function initHamburger() {
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', false);
       document.body.classList.remove('menu-open');
+
       setTimeout(() => {
         links.classList.remove('closing');
       }, 350);
