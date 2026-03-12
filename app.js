@@ -237,6 +237,40 @@ function initHamburger() {
   const btn   = document.getElementById('nav-hamburger');
   const links = document.getElementById('nav-links');
 
+  const smoothScrollToHashMobile = (hash, duration = 980) => {
+    if (!hash || !hash.startsWith('#')) return;
+
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    const navbar = document.getElementById('navbar');
+    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+    const startY = window.pageYOffset;
+    const targetY = target.getBoundingClientRect().top + startY - navbarHeight + 1;
+    const distance = targetY - startY;
+
+    if (Math.abs(distance) < 2) return;
+
+    const easeInOutCubic = (t) => (
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    );
+
+    let startTime = null;
+    const step = (timestamp) => {
+      if (startTime === null) startTime = timestamp;
+
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeInOutCubic(progress);
+
+      window.scrollTo(0, startY + distance * eased);
+
+      if (progress < 1) window.requestAnimationFrame(step);
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
   btn.addEventListener('click', () => {
     const isOpen = links.classList.contains('open');
     if (isOpen) {
@@ -259,12 +293,55 @@ function initHamburger() {
 
   // Chiudi menu al click su un link (comportamento nativo come desktop)
   links.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+    let mobileHandledAt = 0;
+
+    link.addEventListener('click', (e) => {
+      const now = Date.now();
+      const href = link.getAttribute('href') || '';
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+      // If touch already handled this interaction on pointerdown, skip click
+      if (isMobile && now - mobileHandledAt < 320) {
+        e.preventDefault();
+        return;
+      }
+
+      // On mobile keep the same feel, just slightly slower and continuous
+      if (isMobile && href.startsWith('#')) {
+        e.preventDefault();
+      }
+
       links.classList.remove('open');
       links.classList.add('closing');
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', false);
       document.body.classList.remove('menu-open');
+
+      if (isMobile && href.startsWith('#')) {
+        smoothScrollToHashMobile(href, 980);
+      }
+
+      setTimeout(() => {
+        links.classList.remove('closing');
+      }, 350);
+    });
+
+    // Start immediately on touch press to reduce tap-to-motion latency
+    link.addEventListener('pointerdown', (e) => {
+      const href = link.getAttribute('href') || '';
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!isMobile || e.pointerType !== 'touch' || !href.startsWith('#')) return;
+
+      mobileHandledAt = Date.now();
+      e.preventDefault();
+
+      links.classList.remove('open');
+      links.classList.add('closing');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', false);
+      document.body.classList.remove('menu-open');
+
+      smoothScrollToHashMobile(href, 980);
 
       setTimeout(() => {
         links.classList.remove('closing');
