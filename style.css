@@ -597,6 +597,38 @@ ul { list-style: none; }
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
+/* Indicatore laterale dorato elegante all'hover */
+.track-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12%;
+  height: 76%;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--accent) 25%,
+    var(--accent-light) 52%,
+    var(--accent) 75%,
+    transparent 100%
+  );
+  border-radius: 0 2px 2px 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+  box-shadow: 0 0 10px rgba(200, 169, 110, 0.55),
+              0 0 22px rgba(200, 169, 110, 0.2);
+  z-index: 2;
+}
+
+.track-card:hover::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
 /* Copertina / Cover Image */
 .track-cover {
   position: relative;
@@ -777,12 +809,54 @@ ul { list-style: none; }
 
 /* video embedded nella sezione About */
 .about-video {
-  margin: 48px auto 0;   /* più in basso rispetto al contenuto sopra */
-  max-width: 600px;      /* video leggermente più piccolo */
-  text-align: center;
+  position: relative;
+  margin: 48px auto 0;
+  max-width: 600px;
   aspect-ratio: 16 / 9;
   display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
+
+.about-video:hover {
+  border-color: var(--border-accent);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.about-video::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12%;
+  height: 76%;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--accent) 25%,
+    var(--accent-light) 52%,
+    var(--accent) 75%,
+    transparent 100%
+  );
+  border-radius: 0 2px 2px 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s ease;
+  box-shadow: 0 0 10px rgba(200, 169, 110, 0.55),
+              0 0 22px rgba(200, 169, 110, 0.2);
+  z-index: 2;
+}
+
+.about-video:hover::before {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
 .about-video iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
