@@ -236,6 +236,7 @@ function initHeroControls() {
 function initHamburger() {
   const btn   = document.getElementById('nav-hamburger');
   const links = document.getElementById('nav-links');
+  let mobileScrollRaf = null;
 
   const smoothScrollToHashMobile = (hash, duration = 980) => {
     if (!hash || !hash.startsWith('#')) return;
@@ -251,9 +252,13 @@ function initHamburger() {
 
     if (Math.abs(distance) < 2) return;
 
-    const easeInOutCubic = (t) => (
-      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
-    );
+    // Faster start, smooth end: avoids the "hesitation" at animation start.
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
+    if (mobileScrollRaf) {
+      window.cancelAnimationFrame(mobileScrollRaf);
+      mobileScrollRaf = null;
+    }
 
     let startTime = null;
     const step = (timestamp) => {
@@ -261,14 +266,18 @@ function initHamburger() {
 
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = easeInOutCubic(progress);
+      const eased = easeOutCubic(progress);
 
       window.scrollTo(0, startY + distance * eased);
 
-      if (progress < 1) window.requestAnimationFrame(step);
+      if (progress < 1) {
+        mobileScrollRaf = window.requestAnimationFrame(step);
+      } else {
+        mobileScrollRaf = null;
+      }
     };
 
-    window.requestAnimationFrame(step);
+    mobileScrollRaf = window.requestAnimationFrame(step);
   };
 
   btn.addEventListener('click', () => {
@@ -312,18 +321,20 @@ function initHamburger() {
       }
 
       links.classList.remove('open');
-      links.classList.add('closing');
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', false);
       document.body.classList.remove('menu-open');
 
       if (isMobile && href.startsWith('#')) {
-        smoothScrollToHashMobile(href, 980);
-      }
-
-      setTimeout(() => {
+        // On mobile close immediately to keep scrolling smooth.
         links.classList.remove('closing');
-      }, 350);
+        smoothScrollToHashMobile(href, 980);
+      } else {
+        links.classList.add('closing');
+        setTimeout(() => {
+          links.classList.remove('closing');
+        }, 350);
+      }
     });
 
     // Start immediately on touch press to reduce tap-to-motion latency
@@ -336,16 +347,12 @@ function initHamburger() {
       e.preventDefault();
 
       links.classList.remove('open');
-      links.classList.add('closing');
+      links.classList.remove('closing');
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', false);
       document.body.classList.remove('menu-open');
 
       smoothScrollToHashMobile(href, 980);
-
-      setTimeout(() => {
-        links.classList.remove('closing');
-      }, 350);
     });
   });
 }
