@@ -520,9 +520,8 @@ ul { list-style: none; }
 .track-list-separator {
   grid-column: 1 / -1;
   height: 40px;
-  border-top: 1px dashed var(--border);
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* YouTube embed card */
