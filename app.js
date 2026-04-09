@@ -348,7 +348,18 @@ function populatePortfolio() {
   const grid = document.getElementById('tracks-grid');
   if (!grid) return;
 
+  let lastOrigType = null;
   siteData.tracks.forEach((track, index) => {
+    const curType = track.youtubeId ? 'video' : 'audio';
+    
+    // Add a spacer or separator if the type changes from video to audio or vice-versa
+    if (lastOrigType && lastOrigType !== curType) {
+      const spacer = document.createElement('div');
+      spacer.className = 'track-list-separator';
+      grid.appendChild(spacer);
+    }
+    lastOrigType = curType;
+
     const card = buildTrackCard(track, index);
     grid.appendChild(card);
   });
@@ -411,6 +422,11 @@ function buildTrackCard(track, index) {
       genre.textContent = track.genre;
       body.appendChild(genre);
     }
+    if (track.role) {
+      const role = el('p', 'track-role');
+      role.textContent = track.role;
+      body.appendChild(role);
+    }
     const title = el('h3', 'track-title');
     title.textContent = track.title;
     body.appendChild(title);
@@ -461,6 +477,12 @@ function buildTrackCard(track, index) {
     const genre = el('p', 'track-genre');
     genre.textContent = track.genre;
     body.appendChild(genre);
+  }
+
+  if (track.role) {
+    const role = el('p', 'track-role');
+    role.textContent = track.role;
+    body.appendChild(role);
   }
 
   const title = el('h3', 'track-title');

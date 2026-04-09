@@ -475,6 +475,14 @@ ul { list-style: none; }
   gap: 24px;
 }
 
+.track-list-separator {
+  grid-column: 1 / -1;
+  height: 40px;
+  border-top: 1px dashed var(--border);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 /* YouTube embed card */
 .track-card--video .track-youtube-wrap {
   position: relative;
@@ -640,6 +648,14 @@ ul { list-style: none; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent);
+}
+
+.track-role {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-base);
+  opacity: 0.8;
+  margin-top: -2px;
 }
 
 .track-title {

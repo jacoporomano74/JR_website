@@ -42,6 +42,62 @@ const siteData = {
   // ---------------------------------------------------------------------------
   tracks: [
     {
+      title: "Cardboard Cars - Main Theme",
+      description: "by MangoWorks",
+      genre: "Video Game / Game Jam",
+      role: "Composer & Sound Designer",
+      youtubeId: "nkE4sYFZH58?si=kcENmryC1rMsmYbQ"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Cardboard Cars - Menu Theme",
+      description: "by MangoWorks",
+      genre: "Video Game / Game Jam",
+      role: "Composer & Sound Designer",
+      youtubeId: "lXB5cy6MCtc?si=hUjVLtmL_zb_MmsL"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Junkienator - Main Theme",
+      description: "by Interactive Dreams Studio",
+      genre: "Video Game / Indie",
+      role: "Composer",
+      youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Junkienator - Main Theme Night Version",
+      description: "by Interactive Dreams Studio",
+      genre: "Video Game / Indie",
+      role: "Composer",
+      youtubeId: "WhOPONmTk0A?si=fju-4UbPsfvkclPT"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Junkienator - Nightmare Background",
+      description: "by Interactive Dreams Studio",
+      genre: "Video Game / Indie",
+      role: "Composer",
+      youtubeId: "6wbEaCcpn6w?si=FUhgZeMpmP_eUBNW"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Junkienator - Retrospective",
+      description: "by Interactive Dreams Studio",
+      genre: "Video Game / Indie",
+      role: "Composer",
+      youtubeId: "6rnC_N6J9xs?si=HB4RlzaDAHk-6Kpc"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Junkienator - End Credits",
+      description: "by Interactive Dreams Studio",
+      genre: "Video Game / Indie",
+      role: "Composer",
+      youtubeId: "9J54M4jMkVw?si=saH2WlxQJhL98h3K"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "The Origin of Jack Frost",
+      description: "Original Rescore",
+      genre: "Film/Cinematic",
+      role: "Composer",
+      youtubeId: "gBx2n78ctaU?si=mYAvffmQzC866ZUr"   // ← the ID from the YouTube URL
+    },
+    {
       title: "Cave Ambient",
       description: "Videogame track",
       genre: "Ambient",
@@ -61,42 +117,6 @@ const siteData = {
       genre: "Nostalgic / Emotional",
       audioFile: "assets/audio/The Beloved Queen.wav",
       coverImage: "assets/covers/cover-03.jpg"
-    },
-    {
-      title: "Junkienator - Main Theme",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW"   // ← the ID from the YouTube URL
-    },
-    {
-      title: "Junkienator - Main Theme Night Version",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      youtubeId: "WhOPONmTk0A?si=fju-4UbPsfvkclPT"   // ← the ID from the YouTube URL
-    },
-    {
-      title: "Junkienator - Nightmare Background",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      youtubeId: "6wbEaCcpn6w?si=FUhgZeMpmP_eUBNW"   // ← the ID from the YouTube URL
-    },
-    {
-      title: "Junkienator - Retrospective",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      youtubeId: "6rnC_N6J9xs?si=HB4RlzaDAHk-6Kpc"   // ← the ID from the YouTube URL
-    },
-    {
-      title: "Junkienator - End Credits",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      youtubeId: "9J54M4jMkVw?si=saH2WlxQJhL98h3K"   // ← the ID from the YouTube URL
-    },
-    {
-      title: "The Origin of Jack Frost",
-      description: "Original Rescore",
-      genre: "Film/Cinematic",
-      youtubeId: "gBx2n78ctaU?si=mYAvffmQzC866ZUr"   // ← the ID from the YouTube URL
     }
 
   ],
