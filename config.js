@@ -46,7 +46,7 @@ const siteData = {
       description: "by MangoWorks",
       genre: "Video Game / Game Jam",
       role: "Composer & Sound Designer",
-      youtubeId: "nkE4sYFZH58?si=kcENmryC1rMsmYbQ"   // ← the ID from the YouTube URL
+      youtubeId: "nkE4sYFZH58?si=z3lmk1_VbY4PDyqv"   // ← the ID from the YouTube URL
     },
     {
       title: "Cardboard Cars - Menu Theme",
