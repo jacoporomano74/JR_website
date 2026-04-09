@@ -240,7 +240,6 @@ function initHamburger() {
   btn.addEventListener('click', () => {
     const isOpen = links.classList.contains('open');
     if (isOpen) {
-      // Chiusura con animazione
       links.classList.remove('open');
       links.classList.add('closing');
       btn.classList.remove('open');
@@ -249,7 +248,6 @@ function initHamburger() {
         links.classList.remove('closing');
       }, 350);
     } else {
-      // Apertura
       links.classList.add('open');
       btn.classList.add('open');
       btn.setAttribute('aria-expanded', true);
