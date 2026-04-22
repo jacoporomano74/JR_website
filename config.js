@@ -98,6 +98,13 @@ const siteData = {
       youtubeId: "gBx2n78ctaU?si=mYAvffmQzC866ZUr"   // ← the ID from the YouTube URL
     },
     {
+      title: "Riot Challenge Finalist",
+      description: "Videogame/Film Character Track",
+      genre: "Nostalgic / Emotional",
+      audioFile: "assets/audio/RiotChallengeFinalist.wav",
+      coverImage: "assets/covers/cover-03.jpg"
+    },
+    {
       title: "Cave Ambient",
       description: "Videogame track",
       genre: "Ambient",
@@ -118,6 +125,7 @@ const siteData = {
       audioFile: "assets/audio/The Beloved Queen.wav",
       coverImage: "assets/covers/cover-03.jpg"
     }
+
 
   ],
 
