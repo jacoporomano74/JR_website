@@ -973,7 +973,70 @@ ul { list-style: none; }
 }
 
 /* --------------------------------------------------------------------------
-   8. FOOTER / CONTATTI
+   8. TESTIMONIALS
+   -------------------------------------------------------------------------- */
+#testimonials {
+  position: relative;
+  background-color: var(--bg-surface);
+  padding: var(--section-py) var(--section-px); /* Make sure it has proper spacing */
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.testimonial-quote {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.testimonial-quote::before {
+  content: "“";
+  display: block;
+  font-size: 4rem;
+  line-height: 0.6;
+  color: var(--accent-glow);
+  margin-bottom: 8px;
+  font-family: serif;
+  text-align: center;
+}
+
+.testimonial-author {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.testimonial-role {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   9. FOOTER / CONTATTI
    -------------------------------------------------------------------------- */
 #contact {
   background: var(--bg-base);

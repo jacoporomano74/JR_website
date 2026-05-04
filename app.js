@@ -86,6 +86,7 @@ function initAll() {
   populateNavbar();
   populateSectionLabels();
   populateHero();
+  populateTestimonials();
   populatePortfolio();
   populateAbout();
   populateServices();
@@ -97,6 +98,7 @@ function initAll() {
   initHamburger();
   initPageIntro();
   initScrollReveal();
+  initYouTubePlayers();
 }
 
 /**
@@ -159,6 +161,7 @@ function populateMeta() {
 // =============================================================================
 function populateNavbar() {
   setText('nav-logo', siteData.name);
+  setText('nav-link-testimonials', siteData.nav.testimonials);
   setText('nav-link-portfolio', siteData.nav.portfolio);
   setText('nav-link-about',     siteData.nav.about);
   setText('nav-link-services',  siteData.nav.services);
@@ -170,6 +173,8 @@ function populateNavbar() {
 // =============================================================================
 function populateSectionLabels() {
   const lbl = siteData.labels || {};
+  setText('testimonials-label', lbl.testimonialsLabel || 'Reviews');
+  setText('testimonials-title', lbl.testimonialsTitle || 'Testimonials');
   setText('portfolio-label', lbl.portfolioLabel || 'Listen');
   setText('portfolio-title', lbl.portfolioTitle || 'Portfolio');
   setText('about-label',     lbl.aboutLabel     || 'Bio');
@@ -637,6 +642,33 @@ function buildAudioPlayer(track, overlayBtn) {
 }
 
 // =============================================================================
+//  TESTIMONIALS
+// =============================================================================
+function populateTestimonials() {
+  const grid = document.getElementById('testimonials-grid');
+  // Se non c'è il grid o non ci sono testimonial, nascondi la sezione
+  if (!grid || !siteData.testimonials || siteData.testimonials.length === 0) {
+    const sect = document.getElementById('testimonials');
+    if (sect) sect.style.display = 'none';
+    return;
+  }
+
+  siteData.testimonials.forEach((testimonial, index) => {
+    const card = el('div', 'testimonial-card reveal');
+    if (index % 2 === 1) card.classList.add('reveal-delay-1');
+    
+    card.innerHTML = `
+      <div class="testimonial-quote">${testimonial.quote}</div>
+      <div class="testimonial-author">
+        <span class="testimonial-name">${testimonial.name}</span>
+        <span class="testimonial-role">${testimonial.role}</span>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// =============================================================================
 //  ABOUT SECTION
 // =============================================================================
 function populateAbout() {
@@ -1066,3 +1098,7 @@ function svgYoutube() {
     <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
   </svg>`;
 }
+
+
+
+

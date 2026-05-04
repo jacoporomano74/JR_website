@@ -12,7 +12,7 @@ const siteData = {
   name: "Jacopo Romano",         // Il tuo nome (appare nel navbar e nell'hero)
   tagline: "Composer & Sound Designer",  // La tua qualifica
   heroPhrase: "Jacopo Romano",  // Frase grande nell'hero
-  heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sound experience",
+  heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sound experience.",
 
   // Pulsante hero — il click scorrerà alla sezione portfolio
   heroCTA: "Listen",
@@ -34,6 +34,23 @@ const siteData = {
   },
 
   // ---------------------------------------------------------------------------
+  //  TESTIMONIALS / RECENSIONI
+  //  Aggiungi le recensioni delle persone con cui hai collaborato.
+  // ---------------------------------------------------------------------------
+  testimonials: [
+    {
+      name: "Malachi Del Rosario",
+      role: "Composer",
+      quote: "Jacopo is an exceptionally efficient composer whose communication remains clear and punctual—even across time zones. We collaborated as co-composers on a film project, consistently exchanging thoughtful feedback and creative ideas that elevated the work. He demonstrates remarkable flexibility, both musically and logistically, and, most importantly, he delivers high-quality results ahead of deadlines."
+    },
+    {
+      name: "MangoWorks",
+      role: "Creative Director, Indipendent Developer",
+      quote: "My experience working with Jacopo was great as he would listen to feedback and provide updates on projects regularly, this was also accompanied by musical talent and expertise as well as the amazing and fitting music for our game, it also helped that he was able to do sfx that matched the style of sounds and consistency we were looking for!"
+    }
+  ],
+
+  // ---------------------------------------------------------------------------
   //  PORTFOLIO AUDIO & VIDEO — I TUOI BRANI/PROGETTI
   //  Per tracce audio: inserisci audioFile e coverImage
   //  Per video YouTube: inserisci youtubeId (l'ID dopo watch?v= nell'URL)
@@ -41,6 +58,13 @@ const siteData = {
   //  Puoi mescolare tracce audio e video nello stesso elenco.
   // ---------------------------------------------------------------------------
   tracks: [
+      {
+      title: "Survivors",
+      description: "by Christopher Hill",
+      genre: "Short Film",
+      role: "Composer",
+      youtubeId: "h4bmee1Hw0k?si=L0y-RITclLsEBzxH"   // ← the ID from the YouTube URL
+    },
     {
       title: "Cardboard Cars - Main Theme",
       description: "by MangoWorks",
@@ -209,6 +233,7 @@ const siteData = {
   //  TESTI NAVIGAZIONE
   // ---------------------------------------------------------------------------
   nav: {
+    testimonials: "Testimonials",
     portfolio: "Portfolio",
     about:     "About Me",
     services:  "Services",
@@ -219,6 +244,8 @@ const siteData = {
   //  ETICHETTE SEZIONI — label sopra i titoli di ogni sezione
   // ---------------------------------------------------------------------------
   labels: {
+    testimonialsLabel: "Reviews",
+    testimonialsTitle: "Testimonials",
     portfolioLabel: "Listen",
     portfolioTitle: "Portfolio",
     aboutLabel:     "Bio",
