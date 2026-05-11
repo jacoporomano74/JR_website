@@ -44,8 +44,18 @@ const siteData = {
       quote: "Jacopo is an exceptionally efficient composer whose communication remains clear and punctual—even across time zones. We collaborated as co-composers on a film project, consistently exchanging thoughtful feedback and creative ideas that elevated the work. He demonstrates remarkable flexibility, both musically and logistically, and, most importantly, he delivers high-quality results ahead of deadlines."
     },
     {
+      name: "Luca Chiaiese",
+      role: "Game Director, Independent Developer",
+      quote: "Meeting Jacopo was a stroke of luck. He immediately connected with our vision, demonstrating incredible talent and enriching our game with his music. He constantly surprised us by capturing the exact mood we needed for every moment. Masterfully spanning various genres, he didn’t just accompany the production: his compositions even inspired us to rework and improve several scenes in the game."
+    },
+    {
+      name: "Roberto Domenella",
+      role: "Game Director at Interactive Dreams Studio",
+      quote: "We hired Jacopo for our game, Junkienator. Jacopo immediately proved to be extremely professional. He quickly understood the musical direction of the game and delivered a soundtrack that shaped and completed our product. Without him, our game would have been incomplete. We were incredibly lucky to have met such a talented composer by chance, someone who had the patience to dedicate even more time to us than necessary to create an exceptional product that fully met our needs."
+    },
+    {
       name: "MangoWorks",
-      role: "Creative Director, Indipendent Developer",
+      role: "Creative Director, Independent Developer",
       quote: "My experience working with Jacopo was great as he would listen to feedback and provide updates on projects regularly, this was also accompanied by musical talent and expertise as well as the amazing and fitting music for our game, it also helped that he was able to do sfx that matched the style of sounds and consistency we were looking for!"
     }
   ],

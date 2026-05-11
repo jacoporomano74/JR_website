@@ -982,16 +982,21 @@ ul { list-style: none; }
 }
 
 .testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
   gap: 32px;
   margin-top: 40px;
 }
 
 .testimonial-card {
+  flex: 1 1 300px;
+  max-width: 400px;
   padding: 32px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
 }
@@ -1033,6 +1038,10 @@ ul { list-style: none; }
   font-size: 0.85rem;
   color: var(--accent);
   margin-top: 4px;
+  min-height: 44px; /* Riserva spazio per 2-3 righe in modo che i nomi soprastanti si allineino perfettamente */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 /* --------------------------------------------------------------------------
