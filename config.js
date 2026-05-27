@@ -40,7 +40,8 @@ const siteData = {
       "assets/Foto/fotojj.jpg",
       "assets/Foto/WhatsApp Image 2020-06-08 at 08.59.05.jpeg",
       "assets/Foto/54068868409_7e1ff7839c_o.jpg",
-      "assets/Foto/FB_IMG_1555109065106.jpg"
+      "assets/Foto/FB_IMG_1555109065106.jpg",
+      "assets/Foto/54065914121_d6825ce74e_o.jpg"
     ]
   },
 
