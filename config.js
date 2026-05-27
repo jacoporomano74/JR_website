@@ -24,13 +24,24 @@ const siteData = {
   // dopo "watch?v=") in youtubeId. Lascia il campo vuoto o rimuovilo per non
   // mostrare alcun video.
   about: {
-    bio: "I hold a Summa Cum Laude degree in Classical Guitar from Italy and have been recognized as a multi-award winner in international competitions. While my roots are in performance, my true calling has always been composing for film and video games.\n\n I am currently furthering my craft at Berklee Online College of Music, blending classical mastery with modern scoring. I’m driven by the challenge of creating immersive soundtracks and SFX that bring digital worlds to life.",
+    bio: "I am a highly accomplished classical guitarist, holding a Summa Cum Laude degree from Italy. My deep roots in performance have led to numerous first-prize awards in international competitions and extensive live concert experience, both as a soloist and as part of orchestral ensembles. While the stage shaped my musical foundation, my true calling lies in the art of audio production. Today, I specialize in composing for film and video games, alongside providing professional sound design and mixing services. Currently furthering my craft at Berklee Online College of Music, I blend my classical mastery with modern scoring and audio engineering techniques. Whether I am writing an evocative soundtrack, crafting intricate sound effects, or delivering a polished final mix, I am driven by the passion to bring cinematic and digital worlds to life through immersive audio.",
+
+
+
+
     // Inserisci il percorso alla tua foto profilo (es. "assets/foto-profilo.jpg")
     // Puoi usare anche un URL esterno: "https://esempio.com/mia-foto.jpg"
     photo: "",
     photoAlt: "Foto profilo di Jacopo Romano",
     // ID YouTube (facoltativo): ad esempio "dQw4w9WgXcQ" senza parametri
-    youtubeId: "Ln4F0ZXcEkw?si=1LlwRcH2U_q8ZQvS"
+    youtubeId: "Ln4F0ZXcEkw?si=1LlwRcH2U_q8ZQvS",
+    // Galleria di immagini sotto il video
+    gallery: [
+      "assets/Foto/fotojj.jpg",
+      "assets/Foto/WhatsApp Image 2020-06-08 at 08.59.05.jpeg",
+      "assets/Foto/54068868409_7e1ff7839c_o.jpg",
+      "assets/Foto/FB_IMG_1555109065106.jpg"
+    ]
   },
 
   // ---------------------------------------------------------------------------

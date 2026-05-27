@@ -729,6 +729,43 @@ function populateAbout() {
       youtubePlayersList[youtubePlayersList.length-1].player = player;
     }
   }
+
+  // *** Galleria Bio ***
+  const bioGallery = document.getElementById('bio-gallery');
+  const modalOverlay = document.getElementById('image-modal');
+  const modalImg = document.getElementById('image-modal-img');
+  const modalClose = document.getElementById('image-modal-close');
+
+  if (bioGallery && siteData.about.gallery && siteData.about.gallery.length > 0) {
+    siteData.about.gallery.forEach((imgSrc, idx) => {
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = `Foto Bio ${idx + 1}`;
+      
+      // Apertura modal al click
+      img.addEventListener('click', () => {
+        if (modalOverlay && modalImg) {
+          modalImg.src = imgSrc;
+          modalOverlay.classList.add('show');
+        }
+      });
+      
+      bioGallery.appendChild(img);
+    });
+  }
+
+  // Chiusura modal
+  if (modalClose && modalOverlay) {
+    modalClose.addEventListener('click', () => {
+      modalOverlay.classList.remove('show');
+    });
+    // Chiudi cliccando fuori dall'immagine
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) {
+        modalOverlay.classList.remove('show');
+      }
+    });
+  }
 }
 
 // =============================================================================

@@ -887,6 +887,96 @@ ul { list-style: none; }
   height: 100%;
 }
 
+/* Galleria bio sotto il video */
+.bio-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+  margin-top: 40px;
+  width: 100%;
+  overflow-x: auto;
+  /* Aggiunti padding per non tagliare le foto espansendosi (scale e translateY in hover) */
+  padding-top: 20px;
+  padding-bottom: 25px; 
+}
+
+.bio-gallery img {
+  max-width: 300px;
+  max-height: 250px;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  /* Aiuta il browser a renderizzare lo zoom senza "sgranature" (antialiasing hardware) */
+  transform: translateZ(0);
+  will-change: transform, box-shadow;
+}
+
+.bio-gallery img:hover {
+  transform: translateY(-5px) scale(1.02) translateZ(0);
+  /* Ombra oro molto più morbida e diffusa */
+  box-shadow: 0 12px 35px rgba(200, 169, 110, 0.2);
+}
+
+/* Modal per le immagini */
+.image-modal-overlay {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-modal-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+.image-modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.image-modal-overlay.show .image-modal-content {
+  transform: scale(1);
+}
+
+.image-modal-close {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.image-modal-close:hover,
+.image-modal-close:focus {
+  color: var(--accent);
+  text-decoration: none;
+}
 
 .about-layout {
   /* switch to single centered column when photo removed */
