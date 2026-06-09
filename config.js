@@ -81,6 +81,27 @@ const siteData = {
   // ---------------------------------------------------------------------------
   tracks: [
     {
+      title: "Remixed Main Theme - Fishy Business",
+      description: "by MangoWorks",
+      genre: "Indie game / Game Jam",
+      role: "Composer & Sound Designer",
+      youtubeId: "a8CZZ5c31Vs?si=ncWnbe_N2vci-QbX"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Main Theme - Fishy Business",
+      description: "by MangoWorks",
+      genre: "Indie game / Game Jam",
+      role: "Composer & Sound Designer",
+      youtubeId: "jeqwj_z4U_I?si=PfWNty2PTMgbrsLl"   // ← the ID from the YouTube URL
+    },
+    {
+      title: "Menu Theme - Fishy Business",
+      description: "by MangoWorks",
+      genre: "Indie game / Game Jam",
+      role: "Composer & Sound Designer",
+      youtubeId: "F4DLGYXamZ8?si=Ou7UdQYJfBuK1TmI"   // ← the ID from the YouTube URL
+    },
+    {
       title: "Survivors",
       description: "by Christopher Hill",
       genre: "Short Film",
