@@ -216,7 +216,7 @@ const siteData = {
     {
       icon: "🎮",
       title: "Music for Video Games",
-      description: "Adaptive scores and memorable themes for games of every genre. From indie projects to AAA titles, implementation with FMOD and WWise."
+      description: "Adaptive scores and memorable themes for games of every genre, implementation with FMOD and Wwise."
     },
     {
       icon: "🔊",
@@ -246,7 +246,7 @@ const siteData = {
   //  Lascia una stringa vuota "" per nascondere un'icona social.
   // ---------------------------------------------------------------------------
   contact: {
-    email: "",
+    email: "jacoporomano74@gmail.com",
     ctaText: "Got a project in mind?",
     ctaSubText: "Reach out — I'd love to hear about it."
   },
