@@ -14,7 +14,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Jacopo Romano — Composer & Sound Designer" />
-  <meta property="og:url" content="https://jacoporomano.com/" />
+  <meta property="og:url" content="https://jacoporomano.com/about.html" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Jacopo Romano: Composer & Sound Designer" />
   <meta name="twitter:description" content="Jacopo Romano is a composer and sound designer creating original music for films, video games, trailers, and media projects." />
@@ -51,34 +51,47 @@
   <div id="site-nav"></div>
 
   <!-- =====================================================================
-       HERO SECTION — prima sezione a schermo intero
+       ABOUT ME — biografia e foto
        ===================================================================== -->
-  <section id="hero">
-    <!-- Sfondo decorativo con forma geometrica -->
-    <div class="hero-glow"></div>
-
-    <div class="hero-content">
-      <p class="hero-eyebrow reveal" id="hero-tagline"></p>
-      <h1 class="hero-title reveal" id="hero-phrase"></h1>
-      <p class="hero-sub reveal" id="hero-subphrase"></p>
-
-      <!-- Placeholder: qui andrà la nuova foto hero -->
-      <div class="hero-photo-placeholder reveal" id="hero-photo-placeholder">
-        <span>Hero photo — placeholder</span>
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-layout">
+        <!-- Solo colonna testo, immagine rimossa -->
+        <div class="about-text">
+          <div class="section-header">
+            <span class="section-label" id="about-label"></span>
+            <h2 class="section-title" id="about-name"></h2>
+          </div>
+          <div class="about-bio" id="about-bio"></div>
+        </div>
       </div>
+      <!-- video centrato sotto descrizione e immagine -->
+      <div class="about-video" id="about-video"></div>
 
-      <!-- Due punti di ingresso chiari: Games / Film -->
-      <div class="hero-entry-points reveal" id="hero-entry-points">
-        <a href="games.html" class="btn-primary">Games</a>
-        <a href="film.html" class="btn-primary">Film</a>
-      </div>
-    </div>
-
-    <!-- Indicatore scroll animato -->
-    <div class="hero-scroll-indicator">
-      <div class="scroll-line"></div>
+      <!-- Sezione galleria di immagini in riga -->
+      <div class="bio-gallery" id="bio-gallery"></div>
     </div>
   </section>
+
+  <!-- =====================================================================
+       SERVIZI — lista delle competenze offerte
+       ===================================================================== -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label" id="services-label"></span>
+        <h2 class="section-title" id="services-title"></h2>
+      </div>
+      <!-- Le card vengono generate dinamicamente da app.js -->
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- Modal per ingrandire immagini della galleria -->
+  <div id="image-modal" class="image-modal-overlay">
+    <span class="image-modal-close" id="image-modal-close">&times;</span>
+    <img class="image-modal-content" id="image-modal-img" />
+  </div>
 
   <!-- Footer condiviso: iniettato da app.js (vedi partials.js) -->
   <div id="site-footer"></div>

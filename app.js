@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
+  injectPartials();
   initAll();
 
   // *** fallback: pause quando un iframe YouTube riceve focus ***
@@ -76,6 +77,21 @@ function stopAllAudio() {
     currentAudio = null;
     currentPlayBtn = null;
   }
+}
+
+// =============================================================================
+//  PARTIALS — navbar e footer condivisi tra le pagine (definiti in partials.js)
+// =============================================================================
+function injectPartials() {
+  if (typeof PARTIALS === 'undefined') {
+    console.error('ERROR: partials.js not found or PARTIALS is not defined.');
+    return;
+  }
+  const navSlot = document.getElementById('site-nav');
+  if (navSlot) navSlot.outerHTML = PARTIALS.nav;
+
+  const footerSlot = document.getElementById('site-footer');
+  if (footerSlot) footerSlot.outerHTML = PARTIALS.footer;
 }
 
 // =============================================================================
@@ -152,8 +168,18 @@ function initPageIntro() {
 //  META — Titolo pagina
 // =============================================================================
 function populateMeta() {
-  // Use a colon between name and tagline for consistency with SEO requirement
-  document.title = `${siteData.name}: ${siteData.tagline}`;
+  // Pagine diverse dalla home mostrano il nome pagina nel tab del browser
+  const pageNames = {
+    'games.html':   'Games',
+    'film.html':    'Film',
+    'about.html':   'About',
+    'contact.html': 'Contact'
+  };
+  const path = location.pathname.split('/').pop();
+  const pageName = pageNames[path];
+  document.title = pageName
+    ? `${siteData.name} — ${pageName}`
+    : `${siteData.name}: ${siteData.tagline}`;
 }
 
 // =============================================================================
@@ -161,11 +187,10 @@ function populateMeta() {
 // =============================================================================
 function populateNavbar() {
   setText('nav-logo', siteData.name);
-  setText('nav-link-testimonials', siteData.nav.testimonials);
-  setText('nav-link-portfolio', siteData.nav.portfolio);
-  setText('nav-link-about',     siteData.nav.about);
-  setText('nav-link-services',  siteData.nav.services);
-  setText('nav-link-contact',   siteData.nav.contact);
+  setText('nav-link-games',   siteData.nav.games);
+  setText('nav-link-film',    siteData.nav.film);
+  setText('nav-link-about',   siteData.nav.about);
+  setText('nav-link-contact', siteData.nav.contact);
 }
 
 // =============================================================================
@@ -180,6 +205,8 @@ function populateSectionLabels() {
   setText('about-label',     lbl.aboutLabel     || 'Bio');
   setText('services-label',  lbl.servicesLabel  || 'What I Offer');
   setText('services-title',  lbl.servicesTitle  || 'Services');
+  setText('demos-label',     lbl.demosLabel     || 'Listen');
+  setText('demos-title',     lbl.demosTitle     || 'Concept & Demos');
 }
 
 // Navbar diventa opaca al scroll
@@ -348,23 +375,29 @@ function stopAllYoutubeVideos() {
 }
 
 function populatePortfolio() {
-  const grid = document.getElementById('tracks-grid');
-  if (!grid) return;
+  // Ogni pagina espone una o più griglie marcate con data-tracks-section
+  // ("game" / "film" / "demo"); ognuna riceve solo le tracce di quella sezione.
+  const grids = document.querySelectorAll('[data-tracks-section]');
 
-  let lastOrigType = null;
-  siteData.tracks.forEach((track, index) => {
-    const curType = track.youtubeId ? 'video' : 'audio';
-    
-    // Add a spacer or separator if the type changes from video to audio or vice-versa
-    if (lastOrigType && lastOrigType !== curType) {
-      const spacer = document.createElement('div');
-      spacer.className = 'track-list-separator';
-      grid.appendChild(spacer);
-    }
-    lastOrigType = curType;
+  grids.forEach(grid => {
+    const section = grid.dataset.tracksSection;
+    const tracks  = siteData.tracks.filter(t => t.section === section);
 
-    const card = buildTrackCard(track, index);
-    grid.appendChild(card);
+    let lastOrigType = null;
+    tracks.forEach((track, index) => {
+      const curType = track.youtubeId ? 'video' : 'audio';
+
+      // Add a spacer or separator if the type changes from video to audio or vice-versa
+      if (lastOrigType && lastOrigType !== curType) {
+        const spacer = document.createElement('div');
+        spacer.className = 'track-list-separator';
+        grid.appendChild(spacer);
+      }
+      lastOrigType = curType;
+
+      const card = buildTrackCard(track, index);
+      grid.appendChild(card);
+    });
   });
 }
 
@@ -645,26 +678,35 @@ function buildAudioPlayer(track, overlayBtn) {
 //  TESTIMONIALS
 // =============================================================================
 function populateTestimonials() {
-  const grid = document.getElementById('testimonials-grid');
-  // Se non c'è il grid o non ci sono testimonial, nascondi la sezione
-  if (!grid || !siteData.testimonials || siteData.testimonials.length === 0) {
-    const sect = document.getElementById('testimonials');
-    if (sect) sect.style.display = 'none';
-    return;
-  }
+  // Come per le tracce, ogni pagina espone una griglia marcata con
+  // data-testimonials-section ("game" / "film") che riceve solo le recensioni
+  // legate a quel tipo di progetto.
+  const grids = document.querySelectorAll('[data-testimonials-section]');
 
-  siteData.testimonials.forEach((testimonial, index) => {
-    const card = el('div', 'testimonial-card reveal');
-    if (index % 2 === 1) card.classList.add('reveal-delay-1');
-    
-    card.innerHTML = `
-      <div class="testimonial-quote">${testimonial.quote}</div>
-      <div class="testimonial-author">
-        <span class="testimonial-name">${testimonial.name}</span>
-        <span class="testimonial-role">${testimonial.role}</span>
-      </div>
-    `;
-    grid.appendChild(card);
+  grids.forEach(grid => {
+    const section = grid.dataset.testimonialsSection;
+    const items = (siteData.testimonials || []).filter(t => t.section === section);
+
+    // Se non ci sono testimonial per questa sezione, nascondi la sezione
+    if (items.length === 0) {
+      const sect = grid.closest('section');
+      if (sect) sect.style.display = 'none';
+      return;
+    }
+
+    items.forEach((testimonial, index) => {
+      const card = el('div', 'testimonial-card reveal');
+      if (index % 2 === 1) card.classList.add('reveal-delay-1');
+
+      card.innerHTML = `
+        <div class="testimonial-quote">${testimonial.quote}</div>
+        <div class="testimonial-author">
+          <span class="testimonial-name">${testimonial.name}</span>
+          <span class="testimonial-role">${testimonial.role}</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
   });
 }
 

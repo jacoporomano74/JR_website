@@ -14,7 +14,7 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Jacopo Romano — Composer & Sound Designer" />
-  <meta property="og:url" content="https://jacoporomano.com/" />
+  <meta property="og:url" content="https://jacoporomano.com/film.html" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Jacopo Romano: Composer & Sound Designer" />
   <meta name="twitter:description" content="Jacopo Romano is a composer and sound designer creating original music for films, video games, trailers, and media projects." />
@@ -51,32 +51,30 @@
   <div id="site-nav"></div>
 
   <!-- =====================================================================
-       HERO SECTION — prima sezione a schermo intero
+       PORTFOLIO — progetti cinematografici
        ===================================================================== -->
-  <section id="hero">
-    <!-- Sfondo decorativo con forma geometrica -->
-    <div class="hero-glow"></div>
-
-    <div class="hero-content">
-      <p class="hero-eyebrow reveal" id="hero-tagline"></p>
-      <h1 class="hero-title reveal" id="hero-phrase"></h1>
-      <p class="hero-sub reveal" id="hero-subphrase"></p>
-
-      <!-- Placeholder: qui andrà la nuova foto hero -->
-      <div class="hero-photo-placeholder reveal" id="hero-photo-placeholder">
-        <span>Hero photo — placeholder</span>
+  <section id="portfolio">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label" id="portfolio-label"></span>
+        <h2 class="section-title" id="portfolio-title"></h2>
       </div>
-
-      <!-- Due punti di ingresso chiari: Games / Film -->
-      <div class="hero-entry-points reveal" id="hero-entry-points">
-        <a href="games.html" class="btn-primary">Games</a>
-        <a href="film.html" class="btn-primary">Film</a>
-      </div>
+      <!-- Le card vengono generate dinamicamente da app.js (siteData.tracks con section: "film") -->
+      <div class="tracks-grid" data-tracks-section="film"></div>
     </div>
+  </section>
 
-    <!-- Indicatore scroll animato -->
-    <div class="hero-scroll-indicator">
-      <div class="scroll-line"></div>
+  <!-- =====================================================================
+       TESTIMONIALS — recensioni legate a progetti cinematografici
+       ===================================================================== -->
+  <section id="testimonials">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-label" id="testimonials-label"></span>
+        <h2 class="section-title" id="testimonials-title"></h2>
+      </div>
+      <!-- Generati dinamicamente da app.js (siteData.testimonials con section: "film") -->
+      <div class="testimonials-grid" data-testimonials-section="film"></div>
     </div>
   </section>
 

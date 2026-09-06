@@ -51,21 +51,25 @@ const siteData = {
   // ---------------------------------------------------------------------------
   testimonials: [
     {
+      section: "film",
       name: "Malachi Del Rosario",
       role: "Composer",
       quote: "Jacopo is an exceptionally efficient composer whose communication remains clear and punctual—even across time zones. We collaborated as co-composers on a film project, consistently exchanging thoughtful feedback and creative ideas that elevated the work. He demonstrates remarkable flexibility, both musically and logistically, and, most importantly, he delivers high-quality results ahead of deadlines."
     },
     {
+      section: "game",
       name: "Luca Chiaiese",
       role: "Game Director, Independent Developer",
       quote: "Meeting Jacopo was a stroke of luck. He immediately connected with our vision, demonstrating incredible talent and enriching our game with his music. He constantly surprised us by capturing the exact mood we needed for every moment. Masterfully spanning various genres, he didn’t just accompany the production: his compositions even inspired us to rework and improve several scenes in the game."
     },
     {
+      section: "game",
       name: "Roberto Domenella",
       role: "Game Director at Interactive Dreams Studio",
       quote: "We hired Jacopo for our game, Junkienator. Jacopo immediately proved to be extremely professional. He quickly understood the musical direction of the game and delivered a soundtrack that shaped and completed our product. Without him, our game would have been incomplete. We were incredibly lucky to have met such a talented composer by chance, someone who had the patience to dedicate even more time to us than necessary to create an exceptional product that fully met our needs."
     },
     {
+      section: "game",
       name: "MangoWorks",
       role: "Creative Director, Independent Developer",
       quote: "My experience working with Jacopo was great as he would listen to feedback and provide updates on projects regularly, this was also accompanied by musical talent and expertise as well as the amazing and fitting music for our game, it also helped that he was able to do sfx that matched the style of sounds and consistency we were looking for!"
@@ -81,6 +85,7 @@ const siteData = {
   // ---------------------------------------------------------------------------
   tracks: [
     {
+      section: "game",
       title: "Remixed Main Theme - Fishy Business",
       description: "by MangoWorks",
       genre: "Indie game / Game Jam",
@@ -88,6 +93,7 @@ const siteData = {
       youtubeId: "a8CZZ5c31Vs?si=ncWnbe_N2vci-QbX"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Main Theme - Fishy Business",
       description: "by MangoWorks",
       genre: "Indie game / Game Jam",
@@ -95,6 +101,7 @@ const siteData = {
       youtubeId: "jeqwj_z4U_I?si=PfWNty2PTMgbrsLl"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Menu Theme - Fishy Business",
       description: "by MangoWorks",
       genre: "Indie game / Game Jam",
@@ -102,6 +109,7 @@ const siteData = {
       youtubeId: "F4DLGYXamZ8?si=Ou7UdQYJfBuK1TmI"   // ← the ID from the YouTube URL
     },
     {
+      section: "film",
       title: "Survivors",
       description: "by Christopher Hill",
       genre: "Short Film",
@@ -109,6 +117,7 @@ const siteData = {
       youtubeId: "h4bmee1Hw0k?si=L0y-RITclLsEBzxH"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Cardboard Cars - Main Theme",
       description: "by MangoWorks",
       genre: "Video Game / Game Jam",
@@ -116,6 +125,7 @@ const siteData = {
       youtubeId: "nkE4sYFZH58?si=z3lmk1_VbY4PDyqv"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Cardboard Cars - Menu Theme",
       description: "by MangoWorks",
       genre: "Video Game / Game Jam",
@@ -123,6 +133,7 @@ const siteData = {
       youtubeId: "lXB5cy6MCtc?si=hUjVLtmL_zb_MmsL"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Junkienator - Main Theme",
       description: "by Interactive Dreams Studio",
       genre: "Video Game / Indie",
@@ -130,6 +141,7 @@ const siteData = {
       youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Junkienator - Main Theme Night Version",
       description: "by Interactive Dreams Studio",
       genre: "Video Game / Indie",
@@ -137,6 +149,7 @@ const siteData = {
       youtubeId: "WhOPONmTk0A?si=fju-4UbPsfvkclPT"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Junkienator - Nightmare Background",
       description: "by Interactive Dreams Studio",
       genre: "Video Game / Indie",
@@ -144,6 +157,7 @@ const siteData = {
       youtubeId: "6wbEaCcpn6w?si=FUhgZeMpmP_eUBNW"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Junkienator - Retrospective",
       description: "by Interactive Dreams Studio",
       genre: "Video Game / Indie",
@@ -151,6 +165,7 @@ const siteData = {
       youtubeId: "6rnC_N6J9xs?si=HB4RlzaDAHk-6Kpc"   // ← the ID from the YouTube URL
     },
     {
+      section: "game",
       title: "Junkienator - End Credits",
       description: "by Interactive Dreams Studio",
       genre: "Video Game / Indie",
@@ -158,6 +173,7 @@ const siteData = {
       youtubeId: "9J54M4jMkVw?si=saH2WlxQJhL98h3K"   // ← the ID from the YouTube URL
     },
     {
+      section: "film",
       title: "Saturday Morning",
       description: "by Olivia Mundy",
       genre: "Short Film",
@@ -165,6 +181,7 @@ const siteData = {
       youtubeId: "XDOG2Xbm3jU?si=RfgL-IZlfKHvLt-y"   // ← the ID from the YouTube URL
     },
     {
+      section: "film",
       title: "The Origin of Jack Frost",
       description: "Original Rescore",
       genre: "Film/Cinematic",
@@ -172,6 +189,7 @@ const siteData = {
       youtubeId: "gBx2n78ctaU?si=mYAvffmQzC866ZUr"   // ← the ID from the YouTube URL
     },
     {
+      section: "demo",
       title: "Riot Challenge Finalist",
       description: "Videogame/Film Character Track",
       genre: "Nostalgic / Emotional",
@@ -179,6 +197,7 @@ const siteData = {
       coverImage: "assets/covers/cover-03.jpg"
     },
     {
+      section: "demo",
       title: "Cave Ambient",
       description: "Videogame track",
       genre: "Ambient",
@@ -186,6 +205,7 @@ const siteData = {
       coverImage: "assets/covers/cover-01.jpg"
     },
     {
+      section: "demo",
       title: "Before Battle",
       description: "Videogame/Film track",
       genre: "Epic / Action",
@@ -193,6 +213,7 @@ const siteData = {
       coverImage: "assets/covers/cover-02.jpg"
     },
     {
+      section: "demo",
       title: "The Beloved Queen",
       description: "Videogame/Film Character Track",
       genre: "Nostalgic / Emotional",
@@ -282,12 +303,13 @@ const siteData = {
   // ---------------------------------------------------------------------------
   //  TESTI NAVIGAZIONE
   // ---------------------------------------------------------------------------
+  // nav.testimonials/services non esistono più come voci di menu a sé:
+  // il loro contenuto ora vive dentro games.html / film.html / about.html.
   nav: {
-    testimonials: "Testimonials",
-    portfolio: "Portfolio",
-    about:     "About Me",
-    services:  "Services",
-    contact:   "Contact"
+    games:   "Games",
+    film:    "Film",
+    about:   "About Me",
+    contact: "Contact"
   },
 
   // ---------------------------------------------------------------------------
@@ -300,7 +322,10 @@ const siteData = {
     portfolioTitle: "Portfolio",
     aboutLabel:     "Bio",
     servicesLabel:  "What I Offer",
-    servicesTitle:  "Services"
+    servicesTitle:  "Services",
+    // Blocco separato in fondo a games.html per le tracce senza un progetto associato
+    demosLabel: "Listen",
+    demosTitle: "Concept & Demos"
   },
 
   // ---------------------------------------------------------------------------

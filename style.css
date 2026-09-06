@@ -468,6 +468,30 @@ ul { list-style: none; }
   100% { box-shadow: 0 0 6px rgba(200,169,110,0.06), 0 0 20px rgba(200,169,110,0.02) inset; }
 }
 
+/* --------------------------------------------------------------------------
+   3b. HOME — placeholder foto hero + due punti di ingresso (Games / Film)
+   -------------------------------------------------------------------------- */
+.hero-photo-placeholder {
+  width: min(320px, 80vw);
+  aspect-ratio: 4 / 5;
+  border: 1px dashed var(--border-accent);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.hero-entry-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
 
 /* --------------------------------------------------------------------------
    4. UTILITY SEZIONI
