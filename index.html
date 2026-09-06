@@ -10,7 +10,7 @@
   <meta property="og:title" content="Jacopo Romano: Composer & Sound Designer" />
   <meta property="og:description" content="Jacopo Romano is a composer and sound designer creating original music for films, video games, trailers, and media projects." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://jacoporomano.com/og-image.jpg" />
+  <meta property="og:image" content="https://jacoporomano.com/assets/Foto/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Jacopo Romano — Composer & Sound Designer" />
@@ -18,7 +18,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Jacopo Romano: Composer & Sound Designer" />
   <meta name="twitter:description" content="Jacopo Romano is a composer and sound designer creating original music for films, video games, trailers, and media projects." />
-  <meta name="twitter:image" content="https://jacoporomano.com/og-image.jpg" />
+  <meta name="twitter:image" content="https://jacoporomano.com/assets/Foto/og-image.jpg" />
 
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -54,18 +54,10 @@
        HERO SECTION — prima sezione a schermo intero
        ===================================================================== -->
   <section id="hero">
-    <!-- Sfondo decorativo con forma geometrica -->
-    <div class="hero-glow"></div>
-
+    <!-- Testo: nome, tagline, pulsanti -->
     <div class="hero-content">
-      <p class="hero-eyebrow reveal" id="hero-tagline"></p>
       <h1 class="hero-title reveal" id="hero-phrase"></h1>
       <p class="hero-sub reveal" id="hero-subphrase"></p>
-
-      <!-- Placeholder: qui andrà la nuova foto hero -->
-      <div class="hero-photo-placeholder reveal" id="hero-photo-placeholder">
-        <span>Hero photo — placeholder</span>
-      </div>
 
       <!-- Due punti di ingresso chiari: Games / Film -->
       <div class="hero-entry-points reveal" id="hero-entry-points">
@@ -74,9 +66,12 @@
       </div>
     </div>
 
-    <!-- Indicatore scroll animato -->
-    <div class="hero-scroll-indicator">
-      <div class="scroll-line"></div>
+    <!-- Foto, a piena larghezza, sotto il testo -->
+    <div class="hero-media">
+      <picture>
+        <source media="(max-width: 768px)" srcset="assets/Foto/hero_mobile.jpg" />
+        <img class="hero-photo" src="assets/Foto/hero_full.jpg" alt="Jacopo Romano at work in his studio" />
+      </picture>
     </div>
   </section>
 

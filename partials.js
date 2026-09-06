@@ -30,41 +30,15 @@ const PARTIALS = {
   `,
 
   footer: `
-  <footer id="contact">
+  <footer class="site-footer">
     <div class="footer-inner">
-      <!-- CTA testuale principale -->
-      <div class="contact-cta">
-        <p class="contact-cta-label" id="contact-cta-text"></p>
-        <p class="contact-cta-sub"   id="contact-cta-sub"></p>
-        <a class="contact-email" id="contact-email" href="#"></a>
-      </div>
-
-      <!-- Modulo di contatto -->
-      <div class="contact-form-wrap" id="contact-form-wrap">
-        <h3 class="contact-form-title" id="contact-form-title"></h3>
-        <form class="contact-form" id="contact-form" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <input type="text"  id="form-name"    name="name"    class="form-input" />
-            </div>
-            <div class="form-group">
-              <input type="email" id="form-email"   name="email"   class="form-input" />
-            </div>
-          </div>
-          <div class="form-group">
-            <textarea id="form-message" name="message" class="form-input form-textarea"></textarea>
-          </div>
-          <button type="submit" class="btn-primary form-submit" id="form-submit"></button>
-        </form>
-        <div class="form-success" id="form-success"></div>
-      </div>
-
       <!-- Divisore -->
       <div class="footer-divider"></div>
 
-      <!-- Social links (generati da app.js) + copyright -->
+      <!-- Social links (generati da app.js) + email (generata da app.js) + copyright -->
       <div class="footer-bottom">
         <div class="social-links" id="social-links"></div>
+        <a href="mailto:" class="footer-contact-link" id="footer-email-link"></a>
         <p class="footer-copy" id="footer-copy"></p>
       </div>
     </div>

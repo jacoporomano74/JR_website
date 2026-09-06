@@ -846,6 +846,13 @@ function populateContact() {
     emailEl.href        = `mailto:${contact.email}`;
   }
 
+  // Link email nel footer condiviso (sostituisce il vecchio link "Contact")
+  const footerEmailEl = document.getElementById('footer-email-link');
+  if (footerEmailEl) {
+    footerEmailEl.textContent = contact.email;
+    footerEmailEl.href        = `mailto:${contact.email}`;
+  }
+
   // --- Contact form ---
   const formWrap = document.getElementById('contact-form-wrap');
   if (formWrap) {

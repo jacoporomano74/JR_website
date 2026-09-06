@@ -12,7 +12,7 @@ const siteData = {
   name: "Jacopo Romano",         // Il tuo nome (appare nel navbar e nell'hero)
   tagline: "Composer & Sound Designer",  // La tua qualifica
   heroPhrase: "Jacopo Romano",  // Frase grande nell'hero
-  heroSubPhrase: "I compose original scores, and provide sound design and mixing for film, video games, and digital media. Each project is a unique sound experience.",
+  heroSubPhrase: "Composer & Technical Sound Designer — Games and Film",
 
   // Pulsante hero — il click scorrerà alla sezione portfolio
   heroCTA: "Listen",
@@ -296,7 +296,7 @@ const siteData = {
     spotify:    "",                                            // Lascia vuoto per nasconderlo
     soundcloud: "",                                            // Lascia vuoto per nasconderlo
     instagram:  "https://www.instagram.com/jacoporomano74/",         // URL profilo Instagram
-    linkedin:   "",                                            // Lascia vuoto per nasconderlo
+    linkedin:   "https://www.linkedin.com/in/jacopo-romano-composer-sounddesigner/", // URL profilo LinkedIn
     youtube:    "https://www.youtube.com/@jacoporomano7062"                                            // Lascia vuoto per nasconderlo
   },
 
@@ -346,9 +346,10 @@ const siteData = {
   //    backgrounds.heroYMobile = "50%";
   // ---------------------------------------------------------------------------
   backgrounds: {
-    hero:      "assets/Foto/sfondo.jpg",   // Sfondo sezione Hero      (es. "assets/bg-hero.jpg")
-    heroX:     "35%", // Opzionale: asse X (es. "40%" o "center")
-    heroY:     "25%", // Opzionale: verticale posizione immagine
+    // L'hero ora è split-screen: la foto è un <img> in index.html, non uno sfondo.
+    hero:      "",   // Sfondo sezione Hero      (es. "assets/bg-hero.jpg")
+    heroX:     "50%", // Opzionale: asse X (es. "40%" o "center")
+    heroY:     "40%", // Opzionale: verticale posizione immagine
     heroXMobile: "30%", // Opzionale: asse X per mobile
     heroYMobile: "15%", // Opzionale: verticale posizione per mobile
     portfolio: "",   // Sfondo sezione Portfolio
