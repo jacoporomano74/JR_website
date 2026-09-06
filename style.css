@@ -51,6 +51,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -261,8 +262,7 @@ ul { list-style: none; }
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 1100px;
-  height: clamp(240px, 40vw, 560px);
+  max-width: 860px;
   margin: clamp(32px, 5vw, 56px) auto 0;
   overflow: hidden;
 }
@@ -270,17 +270,12 @@ ul { list-style: none; }
 .hero-media picture {
   display: block;
   width: 100%;
-  height: 100%;
 }
 
 .hero-photo {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
-  /* cover + crop dall'alto: mai stirata, mai distorta */
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
   /* sfuma tutti e quattro i bordi nel fondo scuro. Sopra/sotto la sfuma è
      leggera (5%-95%): il soggetto resta ben visibile su tutta l'altezza. */
   -webkit-mask-image:
@@ -1301,14 +1296,19 @@ ul { list-style: none; }
   margin-bottom: 36px;
 }
 
-/* Fondo del footer */
+/* Fondo del footer: griglia a tre colonne uguali, così l'elemento
+   centrale si allinea al centro reale della pagina invece che allo
+   spazio residuo tra fratelli di larghezza diversa. */
 .footer-bottom {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
   gap: 20px;
 }
+
+.footer-bottom > .social-links { justify-self: start; }
+.footer-bottom > .footer-contact-link { justify-self: center; text-align: center; }
+.footer-bottom > .footer-copy { justify-self: end; text-align: right; }
 
 /* Social icons */
 .social-links {
@@ -1555,7 +1555,15 @@ ul { list-style: none; }
 
   /* Footer */
   .footer-bottom {
-    flex-direction: column;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .footer-bottom > .social-links,
+  .footer-bottom > .footer-contact-link,
+  .footer-bottom > .footer-copy {
+    justify-self: center;
     text-align: center;
   }
 }
