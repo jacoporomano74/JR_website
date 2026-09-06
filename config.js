@@ -133,38 +133,58 @@ const siteData = {
   ],
 
   // ---------------------------------------------------------------------------
-  //  PORTFOLIO AUDIO & VIDEO — FILM E DEMO
+  //  PROGETTI CINEMATOGRAFICI — una scheda per progetto, stessa struttura di
+  //  gameProjects: metadati di produzione (role/year/director/type/notes) e un
+  //  elenco di tracce (di solito una sola: il video del film).
+  //  thumbnailYoutubeId: l'ID del video usato per la thumbnail di copertina.
+  // ---------------------------------------------------------------------------
+  filmProjects: [
+    {
+      title: "Survivors",
+      role: "Co-composer",
+      year: "2026",
+      director: "Christopher Hill",
+      type: "Short film",
+      notes: "Co-composed with Malachi Del Rosario",
+      thumbnailYoutubeId: "h4bmee1Hw0k",
+      tracks: [
+        { title: "Survivors", youtubeId: "h4bmee1Hw0k?si=L0y-RITclLsEBzxH" }
+      ]
+    },
+    {
+      title: "Saturday Morning",
+      role: "Composer",
+      year: "2026",
+      director: "Olivia Mundy",
+      type: "Short film",
+      thumbnailYoutubeId: "XDOG2Xbm3jU",
+      tracks: [
+        { title: "Saturday Morning", youtubeId: "XDOG2Xbm3jU?si=RfgL-IZlfKHvLt-y" }
+      ]
+    },
+    {
+      title: "The Origin of Jack Frost",
+      role: "Composer",
+      year: "",
+      director: "",
+      type: "Original rescore — personal project, not a commissioned score",
+      thumbnailYoutubeId: "gBx2n78ctaU",
+      tracks: [
+        { title: "The Origin of Jack Frost", youtubeId: "gBx2n78ctaU?si=mYAvffmQzC866ZUr" }
+      ]
+    }
+  ],
+
+  // ---------------------------------------------------------------------------
+  //  PORTFOLIO AUDIO & VIDEO — DEMO
   //  Per tracce audio: inserisci audioFile e coverImage
   //  Per video YouTube: inserisci youtubeId (l'ID dopo watch?v= nell'URL)
   //    es. https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  youtubeId: "dQw4w9WgXcQ"
   //  Puoi mescolare tracce audio e video nello stesso elenco.
-  //  (Le tracce dei progetti di videogiochi vivono in gameProjects, sopra.)
+  //  (Le tracce dei progetti di videogiochi vivono in gameProjects, quelle dei
+  //  progetti cinematografici in filmProjects, sopra.)
   // ---------------------------------------------------------------------------
   tracks: [
-    {
-      section: "film",
-      title: "Survivors",
-      description: "by Christopher Hill",
-      genre: "Short Film",
-      role: "Composer",
-      youtubeId: "h4bmee1Hw0k?si=L0y-RITclLsEBzxH"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "film",
-      title: "Saturday Morning",
-      description: "by Olivia Mundy",
-      genre: "Short Film",
-      role: "Composer",
-      youtubeId: "XDOG2Xbm3jU?si=RfgL-IZlfKHvLt-y"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "film",
-      title: "The Origin of Jack Frost",
-      description: "Original Rescore",
-      genre: "Film/Cinematic",
-      role: "Composer",
-      youtubeId: "gBx2n78ctaU?si=mYAvffmQzC866ZUr"   // ← the ID from the YouTube URL
-    },
     {
       section: "demo",
       title: "Riot Challenge Finalist",

@@ -382,11 +382,19 @@ function populatePortfolio() {
   grids.forEach(grid => {
     const section = grid.dataset.tracksSection;
 
-    // La sezione "game" è una scheda per progetto (con più tracce dentro),
-    // non una scheda per traccia: usa siteData.gameProjects invece di tracks.
+    // Le sezioni "game" e "film" sono una scheda per progetto (con una o più
+    // tracce dentro), non una scheda per traccia: usano rispettivamente
+    // siteData.gameProjects e siteData.filmProjects invece di tracks.
     if (section === 'game') {
       (siteData.gameProjects || []).forEach((project, index) => {
-        grid.appendChild(buildGameProjectCard(project, index));
+        grid.appendChild(buildProjectCard(project, index));
+      });
+      return;
+    }
+
+    if (section === 'film') {
+      (siteData.filmProjects || []).forEach((project, index) => {
+        grid.appendChild(buildProjectCard(project, index));
       });
       return;
     }
@@ -455,16 +463,23 @@ function buildYoutubeEmbed(youtubeId, title) {
   return embedWrap;
 }
 
-// Costruisce la card di un progetto videoludico: una thumbnail, titolo +
-// sviluppatore, il blocco di metadati di produzione (una sola volta) e
-// l'elenco delle tracce del progetto, ciascuna riproducibile.
-function buildGameProjectCard(project, index) {
+// Costruisce la card di un progetto (videogioco o film): una thumbnail,
+// titolo + sviluppatore (se presente), il blocco di metadati di produzione
+// (una sola volta) e l'elenco delle tracce del progetto, ciascuna riproducibile.
+function buildProjectCard(project, index) {
   const card = el('div', 'track-card track-card--project reveal');
   if (index % 3 === 1) card.classList.add('reveal-delay-1');
   if (index % 3 === 2) card.classList.add('reveal-delay-2');
 
-  // ----- THUMBNAIL DI PROGETTO (una sola, non una per traccia) -----
-  if (project.thumbnailYoutubeId) {
+  const singleTrack = project.tracks && project.tracks.length === 1;
+
+  if (singleTrack) {
+    // Un solo video: l'embed stesso è il visual della card. Una thumbnail
+    // separata mostrerebbe lo stesso identico frame due volte.
+    card.classList.add('track-card--video');
+    card.appendChild(buildYoutubeEmbed(project.tracks[0].youtubeId, project.title));
+  } else if (project.thumbnailYoutubeId) {
+    // ----- THUMBNAIL DI PROGETTO (una sola, non una per traccia) -----
     const coverWrap = el('div', 'track-cover');
     const img = el('img');
     img.src     = `https://img.youtube.com/vi/${project.thumbnailYoutubeId}/maxresdefault.jpg`;
@@ -480,20 +495,16 @@ function buildGameProjectCard(project, index) {
   title.textContent = project.title;
   body.appendChild(title);
 
-  if (project.developer) {
-    const byline = el('p', 'track-description');
-    byline.textContent = `by ${project.developer}`;
-    body.appendChild(byline);
-  }
-
   const meta = buildProjectMetaBlock(project);
   if (meta) body.appendChild(meta);
 
   // ----- ELENCO TRACCE DEL PROGETTO -----
-  // Tutte le tracce, main theme incluso, sono nascoste dietro un
-  // <details>/<summary> nativo (niente JS per aprire/chiudere, accessibile
-  // di default, chiuso al caricamento della pagina).
-  if (project.tracks && project.tracks.length) {
+  // Con una sola traccia (es. la maggior parte dei progetti film) l'embed è
+  // già mostrato come visual della card qui sopra, quindi non c'è altro da
+  // aggiungere. Con più tracce (es. i progetti game), sono nascoste dietro
+  // un <details>/<summary> nativo (niente JS per aprire/chiudere, accessibile
+  // di default, chiuso al caricamento).
+  if (project.tracks && project.tracks.length > 1) {
     const details = document.createElement('details');
     details.className = 'project-track-more';
 
@@ -555,7 +566,10 @@ function buildProjectMetaBlock(meta) {
     ['Developer', meta.developer],
     ['Platforms', meta.platforms],
     ['Engine', meta.engine],
-    ['Audio', meta.audio]
+    ['Audio', meta.audio],
+    ['Director', meta.director],
+    ['Type', meta.type],
+    ['Notes', meta.notes]
   ];
 
   fields.forEach(([label, value]) => {
