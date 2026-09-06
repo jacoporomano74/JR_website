@@ -743,6 +743,122 @@ ul { list-style: none; }
   flex: 1;
 }
 
+.track-meta {
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.track-meta-role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-base);
+}
+
+.track-meta-item {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.75;
+}
+
+.track-meta-label {
+  font-weight: 600;
+}
+
+/* Card di progetto (consolidata, con più tracce dentro) */
+.track-card--project {
+  flex: 1 1 420px;
+  max-width: 480px;
+}
+
+.project-track-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.project-track-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-track-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-base);
+  opacity: 0.85;
+}
+
+.project-track-item .track-youtube-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+.project-track-item .track-youtube-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Toggle elenco tracce — <details>/<summary> nativo, chiuso di default */
+.project-track-more {
+  margin-top: 14px;
+}
+
+.project-track-more .project-track-list {
+  margin-top: 14px;
+}
+
+.project-track-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.project-track-toggle::-webkit-details-marker {
+  display: none;
+}
+
+.project-track-toggle::marker {
+  content: '';
+}
+
+.project-track-toggle:hover {
+  color: var(--accent-light);
+}
+
+.project-track-toggle-icon {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.project-track-more[open] > .project-track-toggle .project-track-toggle-icon {
+  transform: rotate(-135deg);
+}
+
 /* PLAYER AUDIO MINIMALISTA */
 .audio-player {
   margin-top: 16px;

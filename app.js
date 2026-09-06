@@ -381,6 +381,16 @@ function populatePortfolio() {
 
   grids.forEach(grid => {
     const section = grid.dataset.tracksSection;
+
+    // La sezione "game" è una scheda per progetto (con più tracce dentro),
+    // non una scheda per traccia: usa siteData.gameProjects invece di tracks.
+    if (section === 'game') {
+      (siteData.gameProjects || []).forEach((project, index) => {
+        grid.appendChild(buildGameProjectCard(project, index));
+      });
+      return;
+    }
+
     const tracks  = siteData.tracks.filter(t => t.section === section);
 
     let lastOrigType = null;
@@ -401,6 +411,166 @@ function populatePortfolio() {
   });
 }
 
+// Crea un iframe YouTube con enablejsapi e lo registra per il coordinamento
+// play/pause tra le card (stopAllMedia / youtubePlayersList).
+function buildYoutubeEmbed(youtubeId, title) {
+  const embedWrap = el('div', 'track-youtube-wrap');
+
+  // Estrai solo l'ID video (rimuovi i parametri dopo ?)
+  const videoId = youtubeId.split('?')[0];
+  const iframeId = `youtube-iframe-${Date.now()}-${Math.random().toString(36).substr(2,9)}`;
+
+  const iframe = document.createElement('iframe');
+  iframe.id = iframeId;
+  iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+  iframe.setAttribute('loading','lazy');
+  iframe.setAttribute('title', title);
+  iframe.style.width = '100%';
+  iframe.style.height = '100%';
+
+  embedWrap.appendChild(iframe);
+
+  // When iframe is clicked (user starts playback) always pause other media
+  embedWrap.addEventListener('click', () => {
+    stopAllMedia();
+  });
+
+  youtubePlayersList.push({
+    elementId: iframeId,
+    videoId: videoId,
+    player: null
+  });
+
+  if (window.YT && window.YT.Player) {
+    const player = new YT.Player(iframeId, {
+      events: {
+        'onStateChange': onYoutubePlayerStateChange
+      }
+    });
+    youtubePlayersList[youtubePlayersList.length-1].player = player;
+  }
+
+  return embedWrap;
+}
+
+// Costruisce la card di un progetto videoludico: una thumbnail, titolo +
+// sviluppatore, il blocco di metadati di produzione (una sola volta) e
+// l'elenco delle tracce del progetto, ciascuna riproducibile.
+function buildGameProjectCard(project, index) {
+  const card = el('div', 'track-card track-card--project reveal');
+  if (index % 3 === 1) card.classList.add('reveal-delay-1');
+  if (index % 3 === 2) card.classList.add('reveal-delay-2');
+
+  // ----- THUMBNAIL DI PROGETTO (una sola, non una per traccia) -----
+  if (project.thumbnailYoutubeId) {
+    const coverWrap = el('div', 'track-cover');
+    const img = el('img');
+    img.src     = `https://img.youtube.com/vi/${project.thumbnailYoutubeId}/maxresdefault.jpg`;
+    img.alt     = `${project.title} — thumbnail`;
+    img.loading = 'lazy';
+    coverWrap.appendChild(img);
+    card.appendChild(coverWrap);
+  }
+
+  const body = el('div', 'track-body');
+
+  const title = el('h3', 'track-title');
+  title.textContent = project.title;
+  body.appendChild(title);
+
+  if (project.developer) {
+    const byline = el('p', 'track-description');
+    byline.textContent = `by ${project.developer}`;
+    body.appendChild(byline);
+  }
+
+  const meta = buildProjectMetaBlock(project);
+  if (meta) body.appendChild(meta);
+
+  // ----- ELENCO TRACCE DEL PROGETTO -----
+  // Tutte le tracce, main theme incluso, sono nascoste dietro un
+  // <details>/<summary> nativo (niente JS per aprire/chiudere, accessibile
+  // di default, chiuso al caricamento della pagina).
+  if (project.tracks && project.tracks.length) {
+    const details = document.createElement('details');
+    details.className = 'project-track-more';
+
+    const summary = document.createElement('summary');
+    summary.className = 'project-track-toggle';
+
+    const icon = el('span', 'project-track-toggle-icon');
+    icon.setAttribute('aria-hidden', 'true');
+    summary.appendChild(icon);
+
+    const label = el('span', 'project-track-toggle-label');
+    label.textContent = `${project.tracks.length} track${project.tracks.length > 1 ? 's' : ''} · Listen`;
+    summary.appendChild(label);
+
+    details.appendChild(summary);
+
+    const list = el('div', 'project-track-list');
+    project.tracks.forEach(track => list.appendChild(buildProjectTrackItem(track, project)));
+    details.appendChild(list);
+
+    body.appendChild(details);
+  }
+
+  card.appendChild(body);
+  return card;
+}
+
+// Costruisce una singola voce dell'elenco tracce di un progetto (titolo +
+// embed riproducibile).
+function buildProjectTrackItem(track, project) {
+  const item = el('div', 'project-track-item');
+
+  const trackTitle = el('p', 'project-track-title');
+  trackTitle.textContent = track.title;
+  item.appendChild(trackTitle);
+
+  if (track.youtubeId) {
+    item.appendChild(buildYoutubeEmbed(track.youtubeId, `${project.title} — ${track.title}`));
+  }
+
+  return item;
+}
+
+// Costruisce il blocco di metadati di produzione (role, year, developer, ecc.)
+// di un progetto. Salta i campi con valore vuoto.
+function buildProjectMetaBlock(meta) {
+  if (!meta) return null;
+
+  const wrap = el('div', 'track-meta');
+
+  if (meta.role) {
+    const role = el('p', 'track-meta-role');
+    role.textContent = meta.role;
+    wrap.appendChild(role);
+  }
+
+  const fields = [
+    ['Year', meta.year],
+    ['Developer', meta.developer],
+    ['Platforms', meta.platforms],
+    ['Engine', meta.engine],
+    ['Audio', meta.audio]
+  ];
+
+  fields.forEach(([label, value]) => {
+    if (!value) return;
+    const item = el('p', 'track-meta-item');
+    const labelSpan = el('span', 'track-meta-label');
+    labelSpan.textContent = `${label}: `;
+    item.appendChild(labelSpan);
+    item.appendChild(document.createTextNode(value));
+    wrap.appendChild(item);
+  });
+
+  return wrap;
+}
+
 function buildTrackCard(track, index) {
   const card = el('div', 'track-card reveal');
   if (index % 3 === 1) card.classList.add('reveal-delay-1');
@@ -410,47 +580,7 @@ function buildTrackCard(track, index) {
   if (track.youtubeId) {
     card.classList.add('track-card--video');
 
-    const embedWrap = el('div', 'track-youtube-wrap');
-    
-    // Estrai solo l'ID video (rimuovi i parametri dopo ?)
-    const videoId = track.youtubeId.split('?')[0];
-    const iframeId = `youtube-iframe-${Date.now()}-${Math.random().toString(36).substr(2,9)}`;
-
-    // Crea iframe con enablejsapi per poterlo poi controllare
-    const iframe = document.createElement('iframe');
-    iframe.id = iframeId;
-    iframe.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1`;
-    iframe.setAttribute('allowfullscreen','');
-    iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
-    iframe.setAttribute('loading','lazy');
-    iframe.setAttribute('title', track.title);
-    iframe.style.width = '100%';
-    iframe.style.height = '100%';
-
-    embedWrap.appendChild(iframe);
-    card.appendChild(embedWrap);
-
-    // When iframe is clicked (user starts playback) always pause other media
-    embedWrap.addEventListener('click', () => {
-      stopAllMedia();
-    });
-
-    // registra iframe per inizializzazione
-    youtubePlayersList.push({
-      elementId: iframeId,
-      videoId: videoId,
-      player: null
-    });
-
-    // se API già pronta, crea player immediatamente
-    if (window.YT && window.YT.Player) {
-      const player = new YT.Player(iframeId, {
-        events: {
-          'onStateChange': onYoutubePlayerStateChange
-        }
-      });
-      youtubePlayersList[youtubePlayersList.length-1].player = player;
-    }
+    card.appendChild(buildYoutubeEmbed(track.youtubeId, track.title));
 
     const body = el('div', 'track-body');
     if (track.genre) {

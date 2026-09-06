@@ -77,37 +77,70 @@ const siteData = {
   ],
 
   // ---------------------------------------------------------------------------
-  //  PORTFOLIO AUDIO & VIDEO — I TUOI BRANI/PROGETTI
+  //  PROGETTI DI VIDEOGIOCHI — una scheda per progetto, con le sue tracce
+  //  Ogni progetto ha i suoi metadati di produzione (role/year/developer/...)
+  //  e un elenco di tracce, ciascuna con il proprio youtubeId.
+  //  thumbnailYoutubeId: l'ID del video usato per la thumbnail di copertina
+  //  della card (placeholder finché non esiste un'immagine key-art dedicata).
+  // ---------------------------------------------------------------------------
+  gameProjects: [
+    {
+      title: "Fishy Business",
+      developer: "MangoWorks",
+      role: "Composer & Sound Designer",
+      year: "2026",
+      platforms: "Browser (itch.io)",
+      engine: "HTML5",
+      audio: "",
+      thumbnailYoutubeId: "jeqwj_z4U_I",
+      tracks: [
+        { title: "Main Theme", youtubeId: "jeqwj_z4U_I?si=PfWNty2PTMgbrsLl" },
+        { title: "Remixed Main Theme", youtubeId: "a8CZZ5c31Vs?si=ncWnbe_N2vci-QbX" },
+        { title: "Menu Theme", youtubeId: "F4DLGYXamZ8?si=Ou7UdQYJfBuK1TmI" }
+      ]
+    },
+    {
+      title: "Cardboard Cars",
+      developer: "MangoWorks",
+      role: "Composer & Sound Designer",
+      year: "2026",
+      platforms: "Browser (itch.io)",
+      engine: "HTML5",
+      audio: "",
+      thumbnailYoutubeId: "nkE4sYFZH58",
+      tracks: [
+        { title: "Main Theme", youtubeId: "nkE4sYFZH58?si=z3lmk1_VbY4PDyqv" },
+        { title: "Menu Theme", youtubeId: "lXB5cy6MCtc?si=hUjVLtmL_zb_MmsL" }
+      ]
+    },
+    {
+      title: "Junkienator",
+      developer: "Interactive Dreams Studio",
+      role: "Composer",
+      year: "2025",
+      platforms: "PC (Steam)",
+      engine: "Unity",
+      audio: "Unity native audio",
+      thumbnailYoutubeId: "QVDxEfidNCY",
+      tracks: [
+        { title: "Main Theme", youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW" },
+        { title: "Main Theme Night Version", youtubeId: "WhOPONmTk0A?si=fju-4UbPsfvkclPT" },
+        { title: "Nightmare Background", youtubeId: "6wbEaCcpn6w?si=FUhgZeMpmP_eUBNW" },
+        { title: "Retrospective", youtubeId: "6rnC_N6J9xs?si=HB4RlzaDAHk-6Kpc" },
+        { title: "End Credits", youtubeId: "9J54M4jMkVw?si=saH2WlxQJhL98h3K" }
+      ]
+    }
+  ],
+
+  // ---------------------------------------------------------------------------
+  //  PORTFOLIO AUDIO & VIDEO — FILM E DEMO
   //  Per tracce audio: inserisci audioFile e coverImage
   //  Per video YouTube: inserisci youtubeId (l'ID dopo watch?v= nell'URL)
   //    es. https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  youtubeId: "dQw4w9WgXcQ"
   //  Puoi mescolare tracce audio e video nello stesso elenco.
+  //  (Le tracce dei progetti di videogiochi vivono in gameProjects, sopra.)
   // ---------------------------------------------------------------------------
   tracks: [
-    {
-      section: "game",
-      title: "Remixed Main Theme - Fishy Business",
-      description: "by MangoWorks",
-      genre: "Indie game / Game Jam",
-      role: "Composer & Sound Designer",
-      youtubeId: "a8CZZ5c31Vs?si=ncWnbe_N2vci-QbX"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Main Theme - Fishy Business",
-      description: "by MangoWorks",
-      genre: "Indie game / Game Jam",
-      role: "Composer & Sound Designer",
-      youtubeId: "jeqwj_z4U_I?si=PfWNty2PTMgbrsLl"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Menu Theme - Fishy Business",
-      description: "by MangoWorks",
-      genre: "Indie game / Game Jam",
-      role: "Composer & Sound Designer",
-      youtubeId: "F4DLGYXamZ8?si=Ou7UdQYJfBuK1TmI"   // ← the ID from the YouTube URL
-    },
     {
       section: "film",
       title: "Survivors",
@@ -115,62 +148,6 @@ const siteData = {
       genre: "Short Film",
       role: "Composer",
       youtubeId: "h4bmee1Hw0k?si=L0y-RITclLsEBzxH"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Cardboard Cars - Main Theme",
-      description: "by MangoWorks",
-      genre: "Video Game / Game Jam",
-      role: "Composer & Sound Designer",
-      youtubeId: "nkE4sYFZH58?si=z3lmk1_VbY4PDyqv"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Cardboard Cars - Menu Theme",
-      description: "by MangoWorks",
-      genre: "Video Game / Game Jam",
-      role: "Composer & Sound Designer",
-      youtubeId: "lXB5cy6MCtc?si=hUjVLtmL_zb_MmsL"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Junkienator - Main Theme",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      role: "Composer",
-      youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Junkienator - Main Theme Night Version",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      role: "Composer",
-      youtubeId: "WhOPONmTk0A?si=fju-4UbPsfvkclPT"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Junkienator - Nightmare Background",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      role: "Composer",
-      youtubeId: "6wbEaCcpn6w?si=FUhgZeMpmP_eUBNW"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Junkienator - Retrospective",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      role: "Composer",
-      youtubeId: "6rnC_N6J9xs?si=HB4RlzaDAHk-6Kpc"   // ← the ID from the YouTube URL
-    },
-    {
-      section: "game",
-      title: "Junkienator - End Credits",
-      description: "by Interactive Dreams Studio",
-      genre: "Video Game / Indie",
-      role: "Composer",
-      youtubeId: "9J54M4jMkVw?si=saH2WlxQJhL98h3K"   // ← the ID from the YouTube URL
     },
     {
       section: "film",
