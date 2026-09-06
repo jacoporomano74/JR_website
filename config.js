@@ -24,7 +24,7 @@ const siteData = {
   // dopo "watch?v=") in youtubeId. Lascia il campo vuoto o rimuovilo per non
   // mostrare alcun video.
   about: {
-    bio: "I am a highly accomplished classical guitarist, holding a Summa Cum Laude degree from Italy. My deep roots in performance have led to numerous first-prize awards in international competitions and extensive live concert experience, both as a soloist and as part of orchestral ensembles. While the stage shaped my musical foundation, my true calling lies in the art of audio production. Today, I specialize in composing for film and video games, alongside providing professional sound design and mixing services. Currently furthering my craft at Berklee Online College of Music, I blend my classical mastery with modern scoring and audio engineering techniques. Whether I am writing an evocative soundtrack, crafting intricate sound effects, or delivering a polished final mix, I am driven by the passion to bring cinematic and digital worlds to life through immersive audio.",
+    bio: "I compose music and design sound for games and film, and I implement it myself in FMOD and Wwise.\n\nI come from classical guitar — a Summa Cum Laude degree in Italy, first prizes in international competitions, and years of concert work as a soloist and with orchestras, which I still perform today. I'm now specialising in game audio at Berklee Online, working in FMOD, Wwise and Unity.\n\nGame scores are what made me want to do this. Hollow Knight, Red Dead Redemption 2 — music carrying as much of the story as the writing does. That's the work I want to make.\n\nClassical training taught me to stay with something difficult until it's right. Game audio asks for the same thing, with a different set of tools.",
 
 
 
@@ -40,7 +40,7 @@ const siteData = {
       "assets/Foto/fotojj.jpg",
       "assets/Foto/WhatsApp Image 2020-06-08 at 08.59.05.jpeg",
       "assets/Foto/54068868409_7e1ff7839c_o.jpg",
-      "assets/Foto/FB_IMG_1555109065106.jpg",
+      "assets/Foto/hero_mobile.jpg",
       "assets/Foto/54065914121_d6825ce74e_o.jpg"
     ]
   },
@@ -227,34 +227,24 @@ const siteData = {
   // ---------------------------------------------------------------------------
   services: [
     {
-      icon: "🎬",
-      title: "Video Composition",
-      description: "Original soundtracks for films, documentaries, TV series and shorts. Every note serving the visual narrative."
-    },
-    {
-      icon: "🎮",
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 12h4"/><path d="M8 10v4"/><path d="M15 13h.01"/><path d="M18 11h.01"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>',
       title: "Music for Video Games",
       description: "Adaptive scores and memorable themes for games of every genre, implementation with FMOD and Wwise."
     },
     {
-      icon: "🔊",
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10v4"/><path d="M6 6v12"/><path d="M10 3v18"/><path d="M14 8v8"/><path d="M18 5v14"/><path d="M22 10v4"/></svg>',
       title: "Sound Design",
       description: "Creation of sound effects, ambiences and audio textures that bring worlds and characters to life."
     },
     {
-      icon: "🎚️",
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 5.5"/><path d="m12.4 3.4 3.1 5.5"/><path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg>',
+      title: "Video Composition",
+      description: "Original soundtracks for films, documentaries, TV series and shorts. Every note serving the visual narrative."
+    },
+    {
+      icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="4" x2="14" y2="4"/><line x1="10" y1="4" x2="3" y2="4"/><line x1="21" y1="12" x2="12" y2="12"/><line x1="8" y1="12" x2="3" y2="12"/><line x1="21" y1="20" x2="16" y2="20"/><line x1="12" y1="20" x2="3" y2="20"/><line x1="14" y1="2" x2="14" y2="6"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="16" y1="18" x2="16" y2="22"/></svg>',
       title: "Mixing & Mastering",
       description: "Professional mix polishing and mastering to ensure maximum impact on any audio system."
-    },
-    {
-      icon: "📢",
-      title: "Sonic Branding for Brands",
-      description: "Jingles, sonic branding and music for advertising that make a brand instantly recognizable."
-    },
-    {
-      icon: "🎵",
-      title: "Music Production",
-      description: "Arranging and full production of original tracks for artists, podcasts and digital content."
     }
   ],
 
