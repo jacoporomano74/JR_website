@@ -578,7 +578,18 @@ function buildProjectMetaBlock(meta) {
     const labelSpan = el('span', 'track-meta-label');
     labelSpan.textContent = `${label}: `;
     item.appendChild(labelSpan);
-    item.appendChild(document.createTextNode(value));
+
+    if (label === 'Platforms' && meta.url) {
+      const link = el('a', 'track-meta-link');
+      link.href = meta.url;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = value;
+      item.appendChild(link);
+    } else {
+      item.appendChild(document.createTextNode(value));
+    }
+
     wrap.appendChild(item);
   });
 

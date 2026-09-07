@@ -761,6 +761,17 @@ ul { list-style: none; }
   font-weight: 600;
 }
 
+.track-meta-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition);
+}
+
+.track-meta-link:hover {
+  color: var(--accent-light);
+}
+
 /* Card di progetto (consolidata, con più tracce dentro) */
 .track-card--project {
   flex: 1 1 420px;

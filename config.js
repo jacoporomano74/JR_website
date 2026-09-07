@@ -92,6 +92,7 @@ const siteData = {
       platforms: "Browser (itch.io)",
       engine: "HTML5",
       audio: "",
+      url: "https://mangoworks.itch.io/fishy-business",
       thumbnailYoutubeId: "jeqwj_z4U_I",
       tracks: [
         { title: "Main Theme", youtubeId: "jeqwj_z4U_I?si=PfWNty2PTMgbrsLl" },
@@ -107,6 +108,7 @@ const siteData = {
       platforms: "Browser (itch.io)",
       engine: "HTML5",
       audio: "",
+      url: "https://mangoworks.itch.io/cardboard-cars",
       thumbnailYoutubeId: "nkE4sYFZH58",
       tracks: [
         { title: "Main Theme", youtubeId: "nkE4sYFZH58?si=z3lmk1_VbY4PDyqv" },
@@ -121,6 +123,7 @@ const siteData = {
       platforms: "PC (Steam)",
       engine: "Unity",
       audio: "Unity native audio",
+      url: "https://store.steampowered.com/app/2080700/Junkienator/",
       thumbnailYoutubeId: "QVDxEfidNCY",
       tracks: [
         { title: "Main Theme", youtubeId: "QVDxEfidNCY?si=_gAYnZBSOBdW" },
