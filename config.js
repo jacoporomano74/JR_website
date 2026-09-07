@@ -24,7 +24,7 @@ const siteData = {
   // dopo "watch?v=") in youtubeId. Lascia il campo vuoto o rimuovilo per non
   // mostrare alcun video.
   about: {
-    bio: "I compose music and design sound for games and film, and I implement it myself in FMOD and Wwise.\n\nI come from classical guitar — a Summa Cum Laude degree in Italy, first prizes in international competitions, and years of concert work as a soloist and with orchestras, which I still perform today. I'm now specialising in game audio at Berklee Online, working in FMOD, Wwise and Unity.\n\nGame scores are what made me want to do this. Hollow Knight, Red Dead Redemption 2 — music carrying as much of the story as the writing does. That's the work I want to make.\n\nClassical training taught me to stay with something difficult until it's right. Game audio asks for the same thing, with a different set of tools.",
+    bio: "I compose music and design sound for film and games — and for games I also handle implementation in FMOD and Wwise.\n\nI come from classical guitar and classical composition — a Summa Cum Laude degree in Italy, first prizes in international competitions, and years of concert work as a soloist and with orchestras, which I still perform today. I'm now specialising in game audio at Berklee Online, working in FMOD, Wwise and Unity.\n\nFilms and games with scores that give you chills are what made me want to do this. Pirates of the Caribbean, Interstellar, Hollow Knight, Red Dead Redemption 2, Bloodborne — music carrying as much of the story as the writing does. That's the work I want to make.\n\nClassical training taught me to stay with something difficult until it's right, and to perform under pressure. Film scoring and game audio ask for the same things, with a different set of tools.",
 
 
 
