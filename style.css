@@ -29,6 +29,7 @@
 
   /* Tipografia */
   --font: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
 
   /* Spaziature sezioni */
   --section-py: clamp(80px, 10vw, 140px);
@@ -171,6 +172,7 @@ ul { list-style: none; }
 }
 
 .nav-logo {
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -359,10 +361,11 @@ ul { list-style: none; }
 }
 
 .hero-title {
-  font-size: clamp(2rem, 9vw, 5.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 11vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
   text-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
@@ -486,9 +489,10 @@ ul { list-style: none; }
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.15;
 }
 
@@ -725,9 +729,10 @@ ul { list-style: none; }
 }
 
 .track-title {
-  font-size: 1.15rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   line-height: 1.3;
 }
 
@@ -1279,6 +1284,7 @@ ul { list-style: none; }
 }
 
 .contact-cta-label {
+  font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -1605,6 +1611,7 @@ ul { list-style: none; }
 }
 
 .contact-form-title {
+  font-family: var(--font-display);
   font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   font-weight: 700;
   letter-spacing: -0.02em;
