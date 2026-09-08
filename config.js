@@ -38,7 +38,7 @@ const siteData = {
     // Galleria di immagini sotto il video
     gallery: [
       "assets/Foto/fotojj.jpg",
-      "assets/Foto/WhatsApp Image 2020-06-08 at 08.59.05.jpeg",
+      "assets/Foto/hero-guitar.JPG",
       "assets/Foto/54068868409_7e1ff7839c_o.jpg",
       "assets/Foto/hero_mobile.jpg",
       "assets/Foto/54065914121_d6825ce74e_o.jpg"
