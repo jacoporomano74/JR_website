@@ -509,6 +509,7 @@ ul { list-style: none; }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: start;
   gap: 24px;
 }
 
@@ -779,8 +780,51 @@ ul { list-style: none; }
 
 /* Card di progetto (consolidata, con più tracce dentro) */
 .track-card--project {
-  flex: 1 1 420px;
-  max-width: 480px;
+  flex: 0 1 calc(33.333% - 16px);
+  max-width: calc(33.333% - 16px);
+}
+
+@media (max-width: 900px) {
+  .track-card--project {
+    flex-basis: calc(50% - 12px);
+    max-width: calc(50% - 12px);
+  }
+}
+
+@media (max-width: 600px) {
+  .track-card--project {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+}
+
+.track-card--project .track-body {
+  padding: 16px 18px 18px;
+  gap: 5px;
+}
+
+.track-card--project .track-title {
+  font-size: 1.15rem;
+}
+
+.track-card--project .track-genre {
+  font-size: 0.65rem;
+}
+
+.track-card--project .track-role {
+  font-size: 0.7rem;
+}
+
+.track-card--project .track-meta-role {
+  font-size: 0.75rem;
+}
+
+.track-card--project .track-meta-item {
+  font-size: 0.7rem;
+}
+
+.track-card--project .project-track-title {
+  font-size: 0.75rem;
 }
 
 .project-track-list {

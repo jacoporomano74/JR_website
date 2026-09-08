@@ -16,6 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
   injectPartials();
   initAll();
 
+  // Ricalcola l'allineamento delle card di progetto quando la larghezza
+  // della finestra cambia il numero di card per riga.
+  let projectCardResizeTimer = null;
+  window.addEventListener('resize', () => {
+    clearTimeout(projectCardResizeTimer);
+    projectCardResizeTimer = setTimeout(() => {
+      document.querySelectorAll('[data-tracks-section="game"], [data-tracks-section="film"]')
+        .forEach(grid => equalizeProjectCardHeights(grid));
+    }, 150);
+  }, { passive: true });
+
   // *** fallback: pause quando un iframe YouTube riceve focus ***
   window.addEventListener('focusin', (e) => {
     const el = e.target;
@@ -389,6 +400,7 @@ function populatePortfolio() {
       (siteData.gameProjects || []).forEach((project, index) => {
         grid.appendChild(buildProjectCard(project, index));
       });
+      equalizeProjectCardHeights(grid);
       return;
     }
 
@@ -396,6 +408,7 @@ function populatePortfolio() {
       (siteData.filmProjects || []).forEach((project, index) => {
         grid.appendChild(buildProjectCard(project, index));
       });
+      equalizeProjectCardHeights(grid);
       return;
     }
 
@@ -416,6 +429,43 @@ function populatePortfolio() {
       const card = buildTrackCard(track, index);
       grid.appendChild(card);
     });
+  });
+}
+
+// Allinea l'altezza delle card di progetto (chiuse) alla più alta della
+// stessa riga, così i bordi inferiori combaciano. L'allineamento è un
+// min-height statico, non uno stretch del contenitore flex: quando una card
+// viene aperta (<details>), cresce da sola e le altre restano ferme
+// all'altezza calcolata da chiuse.
+function equalizeProjectCardHeights(grid) {
+  const cards = Array.from(grid.querySelectorAll(':scope > .track-card--project'));
+  if (!cards.length) return;
+
+  cards.forEach(card => { card.style.minHeight = ''; });
+
+  const measurements = cards.map(card => {
+    const details = card.querySelector('.project-track-more');
+    const wasOpen = details ? details.open : false;
+    if (details) details.open = false;
+    const height = card.offsetHeight;
+    const top = card.offsetTop;
+    if (details) details.open = wasOpen;
+    return { card, height, top };
+  });
+
+  const rows = [];
+  measurements.forEach(m => {
+    let row = rows.find(r => Math.abs(r.top - m.top) < 2);
+    if (!row) {
+      row = { top: m.top, items: [] };
+      rows.push(row);
+    }
+    row.items.push(m);
+  });
+
+  rows.forEach(row => {
+    const maxHeight = Math.max(...row.items.map(item => item.height));
+    row.items.forEach(item => { item.card.style.minHeight = `${maxHeight}px`; });
   });
 }
 
