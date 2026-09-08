@@ -54,6 +54,16 @@
        HERO SECTION — prima sezione a schermo intero
        ===================================================================== -->
   <section id="hero">
+    <!-- Sfondo desktop (da 769px in su): due immagini a piena larghezza che
+         sfumano l'una verso l'altra al centro, e verso il fondo sui bordi
+         esterni. Sotto i 769px è nascosto: su mobile resta la foto inline
+         in .hero-media, invariata. I percorsi sono in style.css, nelle
+         variabili --hero-split-left / --hero-split-right. -->
+    <div class="hero-split-bg" aria-hidden="true">
+      <div class="hero-split-img hero-split-img--left"></div>
+      <div class="hero-split-img hero-split-img--right"></div>
+    </div>
+
     <!-- Testo: nome, tagline, pulsanti -->
     <div class="hero-content">
       <h1 class="hero-title reveal" id="hero-phrase"></h1>

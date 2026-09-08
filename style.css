@@ -291,6 +291,89 @@ ul { list-style: none; }
 }
 
 /* --------------------------------------------------------------------------
+   HERO DESKTOP — sfondo a due immagini a piena larghezza
+   Tutto quello che segue vive dentro una min-width: da 768px in giù resta
+   valido il layout mobile qui sopra (testo + foto inline), non toccato.
+   -------------------------------------------------------------------------- */
+
+/* Di default nascosto: su mobile la foto è l'<img> dentro .hero-media. */
+.hero-split-bg {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  #hero {
+    /* Per sostituire la foto di destra basta cambiare --hero-split-right:
+       finché resta "none" si vede il placeholder grigio scuro sotto. */
+    --hero-split-left: url('assets/Foto/hero_full.jpg');
+    --hero-split-right: none;
+    --hero-split-placeholder: #2b2b2b;
+
+    justify-content: center;
+    min-height: 100svh;
+  }
+
+  .hero-split-bg {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Due metà esatte: la destra ha così lo stesso rapporto d'aspetto della
+     sinistra, e la foto vera potrà entrare senza altri ritocchi. */
+  .hero-split-img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  /* Sinistra: 0% = bordo esterno, 100% = centro del viewport. Piena al terzo
+     esterno (dove sta il soggetto), poi una rampa lunga e morbida verso il
+     centro, che sotto al testo resta solo un velo. */
+  .hero-split-img--left {
+    left: 0;
+    background-image: var(--hero-split-left);
+    background-position: 30% center;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  /* Destra: stesse fermate, specchiate (to left), così le due sfumature si
+     incontrano al centro con lo stesso peso. */
+  .hero-split-img--right {
+    right: 0;
+    background-color: var(--hero-split-placeholder);
+    background-image: var(--hero-split-right);
+    background-position: center center;
+    -webkit-mask-image:
+      linear-gradient(to left, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to left, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  /* La foto ora è lo sfondo: quella inline servirebbe due volte lo stesso
+     scatto. Su mobile resta visibile. */
+  .hero-media {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    DEBUG CONTROLS FOR HERO BACKGROUND
    Visible panel with sliders to tweak X/Y offsets live.
    Only shown when siteData.debugHeroControls === true (enabled in config.js)
