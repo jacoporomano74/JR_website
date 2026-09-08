@@ -202,6 +202,25 @@ function populateNavbar() {
   setText('nav-link-film',    siteData.nav.film);
   setText('nav-link-about',   siteData.nav.about);
   setText('nav-link-contact', siteData.nav.contact);
+
+  // Evidenzia il link della pagina corrente
+  const activeIdByPage = {
+    'games.html': 'nav-link-games',
+    'film.html':  'nav-link-film',
+    'about.html': 'nav-link-about'
+  };
+  const path = location.pathname.split('/').pop();
+  const activeId = activeIdByPage[path];
+  if (activeId) {
+    const activeLink = document.getElementById(activeId);
+    if (activeLink) activeLink.classList.add('is-active');
+  }
+
+  // Wordmark in oro sulla homepage
+  if (path === '' || path === 'index.html') {
+    const logo = document.getElementById('nav-logo');
+    if (logo) logo.classList.add('is-active');
+  }
 }
 
 // =============================================================================
@@ -211,7 +230,14 @@ function populateSectionLabels() {
   const lbl = siteData.labels || {};
   setText('testimonials-label', lbl.testimonialsLabel || 'Reviews');
   setText('testimonials-title', lbl.testimonialsTitle || 'Testimonials');
-  setText('portfolio-label', lbl.portfolioLabel || 'Listen');
+
+  // Il label sopra "Portfolio" indica di quale sezione si tratta
+  const portfolioLabelByPage = {
+    'games.html': 'Games',
+    'film.html':  'Film'
+  };
+  const path = location.pathname.split('/').pop();
+  setText('portfolio-label', portfolioLabelByPage[path] || lbl.portfolioLabel || 'Listen');
   setText('portfolio-title', lbl.portfolioTitle || 'Portfolio');
   setText('about-label',     lbl.aboutLabel     || 'Bio');
   setText('services-label',  lbl.servicesLabel  || 'What I Offer');
