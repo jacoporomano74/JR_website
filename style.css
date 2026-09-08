@@ -310,7 +310,7 @@ ul { list-style: none; }
     /* Per sostituire la foto di destra basta cambiare --hero-split-right:
        finché resta "none" si vede il placeholder grigio scuro sotto. */
     --hero-split-left: url('assets/Foto/hero_full.jpg');
-    --hero-split-right: none;
+    --hero-split-right: url('assets/Foto/hero-synth.jpg');
     --hero-split-placeholder: #2b2b2b;
 
     justify-content: center;
@@ -336,36 +336,40 @@ ul { list-style: none; }
     background-repeat: no-repeat;
   }
 
-  /* Sinistra: 0% = bordo esterno, 100% = centro del viewport. Piena al terzo
-     esterno (dove sta il soggetto), poi una rampa lunga e morbida verso il
-     centro, che sotto al testo resta solo un velo. */
+  /* Sinistra: 0% = bordo esterno, 100% = centro del viewport. Piena
+     all'esterno, poi una curva morbida a più tappe (non lineare) che
+     scende a zero solo al centro esatto: niente confine percepibile, le
+     due immagini si incontrano senza spazio nero fra loro. Il testo può
+     sedere su un velo residuo dell'immagine — leggibilità, non pulizia. */
   .hero-split-img--left {
     left: 0;
     background-image: var(--hero-split-left);
     background-position: 30% center;
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to right, #000 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.3) 65%, transparent 100%),
       linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to right, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to right, #000 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.3) 65%, transparent 100%),
       linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
     mask-composite: intersect;
   }
 
-  /* Destra: stesse fermate, specchiate (to left), così le due sfumature si
-     incontrano al centro con lo stesso peso. */
+  /* Destra: stesse fermate della sinistra, specchiate (to left), così le
+     due sfumature si incontrano al centro con lo stesso peso e la stessa
+     morbidezza. Cover (ereditato da .hero-split-img) come la sinistra,
+     così riempie tutta l'altezza: nessun bordo netto sopra o sotto. */
   .hero-split-img--right {
     right: 0;
     background-color: var(--hero-split-placeholder);
     background-image: var(--hero-split-right);
-    background-position: center center;
+    background-position: 70% center;
     -webkit-mask-image:
-      linear-gradient(to left, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to left, #000 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.3) 65%, transparent 100%),
       linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to left, transparent 0%, #000 18%, #000 30%, rgba(0, 0, 0, 0.28) 62%, transparent 100%),
+      linear-gradient(to left, #000 0%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.3) 65%, transparent 100%),
       linear-gradient(to bottom, transparent 0%, #000 10%, #000 85%, transparent 100%);
     mask-composite: intersect;
   }
