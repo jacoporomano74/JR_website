@@ -173,7 +173,7 @@ ul { list-style: none; }
 
 .nav-logo {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary);
@@ -1298,9 +1298,9 @@ ul { list-style: none; }
 }
 
 .contact-email {
-  font-size: clamp(1.6rem, 4vw, 3rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--accent);
   transition: color var(--transition);
   word-break: break-all;
@@ -1584,7 +1584,7 @@ ul { list-style: none; }
 }
 
 @media (max-width: 480px) {
-  .contact-email { font-size: 1.4rem; }
+  .contact-email { font-size: 1.1rem; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1668,6 +1668,11 @@ textarea.form-input {
   cursor: pointer;
   border: none;
   margin-top: 6px;
+}
+
+/* Il submit invia il form, non porta a un'ancora: niente freccia ↓ */
+.form-submit::after {
+  content: none;
 }
 
 .form-success {
