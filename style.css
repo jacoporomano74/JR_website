@@ -588,6 +588,40 @@ ul { list-style: none; }
 }
 
 /* --------------------------------------------------------------------------
+   IMPLEMENTATION REEL — video self-ospitato
+   -------------------------------------------------------------------------- */
+.reel-entry + .reel-entry {
+  margin-top: 64px;
+}
+
+.reel-video-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.reel-video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reel-meta {
+  max-width: 1000px;
+  margin: 20px auto 0;
+  align-items: center;
+  text-align: center;
+}
+
+.track-meta-title .track-meta-label,
+.track-meta-title .track-meta-value {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
    5. PORTFOLIO — GRIGLIA TRACCE
    -------------------------------------------------------------------------- */
 #portfolio {
@@ -1716,6 +1750,17 @@ ul { list-style: none; }
   .footer-bottom {
     grid-template-columns: 1fr;
     justify-items: center;
+    text-align: center;
+  }
+
+  .footer-bottom .social-links {
+    justify-self: center;
+    justify-content: center;
+  }
+
+  .footer-bottom .footer-contact-link,
+  .footer-bottom .footer-copy {
+    justify-self: center;
     text-align: center;
   }
 }
