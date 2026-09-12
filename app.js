@@ -125,6 +125,7 @@ function initAll() {
   initHamburger();
   initPageIntro();
   initScrollReveal();
+  initSubnav();
   initYouTubePlayers();
 }
 
@@ -1240,6 +1241,35 @@ function initScrollReveal() {
   }, { threshold: 0.12, rootMargin: '0px 0px -10px 0px' });
 
   items.forEach(item => observer.observe(item));
+}
+
+// =============================================================================
+//  SUBNAV — evidenzia la voce della sezione attualmente visibile
+// =============================================================================
+function initSubnav() {
+  const subnav = document.getElementById('subnav');
+  if (!subnav) return;
+
+  const links = Array.from(subnav.querySelectorAll('.subnav-link'));
+  const sections = links
+    .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+    .filter(Boolean);
+
+  if (!sections.length || !('IntersectionObserver' in window)) return;
+
+  const setActive = (id) => {
+    links.forEach(link => {
+      link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+    });
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActive(entry.target.id);
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(section => observer.observe(section));
 }
 
 // =============================================================================

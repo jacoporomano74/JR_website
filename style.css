@@ -244,6 +244,53 @@ ul { list-style: none; }
 .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* --------------------------------------------------------------------------
+   2b. SUBNAV — anchor nav secondaria (games.html / film.html)
+   Resta agganciata subito sotto la navbar fissa (68px) durante lo scroll.
+   -------------------------------------------------------------------------- */
+.subnav {
+  position: sticky;
+  top: 68px;
+  z-index: 90;
+  margin-top: 68px;
+  background: rgba(9, 9, 9, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.subnav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px var(--section-px);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.subnav-link {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: color var(--transition), background var(--transition);
+}
+
+.subnav-link:hover { color: var(--text-primary); }
+
+.subnav-link.is-active { color: var(--accent); }
+
+/* Spazio per non far finire i titoli di sezione sotto navbar + subnav fisse */
+#reel,
+#portfolio,
+#testimonials,
+#demos {
+  scroll-margin-top: 118px;
+}
+
+/* --------------------------------------------------------------------------
    3. HERO SECTION
    -------------------------------------------------------------------------- */
 /* Hero: testo centrato in alto, foto a piena larghezza sotto,
