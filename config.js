@@ -57,6 +57,12 @@ const siteData = {
       quote: "Jacopo is an exceptionally efficient composer whose communication remains clear and punctual—even across time zones. We collaborated as co-composers on a film project, consistently exchanging thoughtful feedback and creative ideas that elevated the work. He demonstrates remarkable flexibility, both musically and logistically, and, most importantly, he delivers high-quality results ahead of deadlines."
     },
     {
+      section: "film",
+      name: "Sam Permar",
+      role: "Producer",
+      quote: "Jacopo is an incredibly reliable, professional collaborator. I've worked with him as a sound designer and composer on multiple films, and he's consistently delivered excellent work that meets the directors' visions while elevating the quality of the projects. I couldn't recommend Jacopo more!"
+    },
+    {
       section: "game",
       name: "Luca Chiaiese",
       role: "Game Director, Independent Developer",
