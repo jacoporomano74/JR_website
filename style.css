@@ -32,7 +32,7 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
 
   /* Spaziature sezioni */
-  --section-py: clamp(80px, 10vw, 140px);
+  --section-py: clamp(44px, 5.5vw, 76px);
   --section-px: clamp(20px, 5vw, 60px);
   --max-width:  1200px;
 
@@ -649,10 +649,22 @@ ul { list-style: none; }
 
 .section-header {
   text-align: center;
-  margin-bottom: clamp(48px, 6vw, 72px);
+  margin-bottom: clamp(26px, 3.3vw, 40px);
 }
 
 .section-header--left { text-align: left; }
+
+/* Hairline divider fra sezioni consecutive: niente sopra la prima sezione
+   di una pagina, niente sopra il footer (ha già il suo .footer-divider).
+   Larghezza pari al container di contenuto, non edge-to-edge. */
+.section-rule::before {
+  content: '';
+  display: block;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 1px;
+  background: rgba(200, 169, 110, 0.28);
+}
 
 .section-label {
   display: inline-block;
@@ -710,9 +722,7 @@ ul { list-style: none; }
    5. PORTFOLIO — GRIGLIA TRACCE
    -------------------------------------------------------------------------- */
 #portfolio {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  background: var(--bg-base);
 }
 
 .tracks-grid {
@@ -1385,9 +1395,7 @@ ul { list-style: none; }
    7. SEZIONE SERVIZI
    -------------------------------------------------------------------------- */
 #services {
-  background: var(--bg-surface);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  background: var(--bg-base);
 }
 
 .services-grid {
@@ -1446,7 +1454,7 @@ ul { list-style: none; }
    -------------------------------------------------------------------------- */
 #testimonials {
   position: relative;
-  background-color: var(--bg-surface);
+  background-color: var(--bg-base);
   padding: var(--section-py) var(--section-px); /* Make sure it has proper spacing */
 }
 
@@ -1456,7 +1464,7 @@ ul { list-style: none; }
   justify-content: center;
   align-items: stretch;
   gap: 32px;
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .testimonial-card {
@@ -1472,10 +1480,10 @@ ul { list-style: none; }
 
 .testimonial-quote {
   font-size: 1rem;
-  font-style: italic;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   line-height: 1.6;
   margin-bottom: 24px;
+  text-align: center;
   position: relative;
 }
 
@@ -1484,7 +1492,7 @@ ul { list-style: none; }
   display: block;
   font-size: 4rem;
   line-height: 0.6;
-  color: var(--accent-glow);
+  color: var(--accent);
   margin-bottom: 8px;
   font-family: serif;
   text-align: center;
@@ -1534,7 +1542,7 @@ ul { list-style: none; }
 
 .contact-cta {
   text-align: center;
-  padding-bottom: clamp(48px, 6vw, 72px);
+  padding-bottom: clamp(26px, 3.3vw, 40px);
 }
 
 .contact-cta-label {
