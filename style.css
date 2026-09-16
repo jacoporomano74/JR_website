@@ -429,6 +429,44 @@ ul { list-style: none; }
 }
 
 /* --------------------------------------------------------------------------
+   3a. HOME — hero + footer in un'unica viewport (solo desktop, >= 769px).
+   Il footer esce dal flusso e si sovrappone al fondo della foto hero,
+   così hero + footer insieme riempiono esattamente 100dvh senza scroll.
+   Sotto i 769px non cambia nulla: resta lo scroll normale.
+   -------------------------------------------------------------------------- */
+@media (min-width: 769px) {
+  body.home {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  body.home #hero {
+    height: 100%;
+    min-height: 0;
+    padding: clamp(84px, 9vw, 110px) var(--section-px) clamp(24px, 3vw, 36px);
+  }
+
+  /* Il footer diventa un overlay ancorato al fondo della viewport, non un
+     blocco dopo l'hero: per questo esce dal flusso documentale. */
+  body.home .site-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 28px var(--section-px) 20px;
+    background: linear-gradient(to top, var(--bg-base) 0%, rgba(9, 9, 9, 0.88) 45%, transparent 100%);
+  }
+
+  /* Il gradiente sostituisce la linea come separazione: niente giunta visibile. */
+  body.home .footer-divider {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
    DEBUG CONTROLS FOR HERO BACKGROUND
    Visible panel with sliders to tweak X/Y offsets live.
    Only shown when siteData.debugHeroControls === true (enabled in config.js)
